@@ -1,3 +1,5 @@
+require 'pry-byebug'
+
 # frozen_string_literal: true
 
 class Node
@@ -8,5 +10,10 @@ class Node
 
   def value
     @value
+  end
+
+  def next_node
+    # binding.pry
+    @next_node
   end
 end
