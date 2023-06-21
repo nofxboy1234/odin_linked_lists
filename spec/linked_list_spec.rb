@@ -97,7 +97,15 @@ RSpec.describe LinkedList do
   end
 
   describe '#at' do
-    xit 'returns the node at the given index'
+    context 'when 3 nodes of values 100, 200, 300 are appended to an empty linked_list' do
+      it 'returns the node at the given index' do
+        appended_node100 = linked_list.append(100)
+        appended_node200 = linked_list.append(200)
+        appended_node300 = linked_list.append(300)
+
+        expect(linked_list.at(1)).to be(appended_node100)
+      end
+    end
   end
 
   describe '#pop' do
