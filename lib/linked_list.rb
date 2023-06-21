@@ -11,9 +11,8 @@ class LinkedList
     increment_size
 
     tmp = head
-    while tmp.next_node
-      tmp = tmp.next_node
-    end
+    tmp = tmp.next_node while tmp.next_node
+    
     tmp.next_node = create_node(value, nil)
     @tail = tmp.next_node
   end
