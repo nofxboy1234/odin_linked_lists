@@ -19,6 +19,7 @@ class LinkedList
       tmp = tmp.next_node
     end
     tmp.next_node = create_node(value, nil)
+    @tail = tmp.next_node
   end
 
   def prepend(value)
@@ -48,6 +49,10 @@ class LinkedList
 
   def head
     @head ||= create_node
+  end
+
+  def tail
+    @tail ||= head
   end
 
   private

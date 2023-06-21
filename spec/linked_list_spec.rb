@@ -11,7 +11,7 @@ RSpec.describe LinkedList do
     end
 
     context 'when linked_list is not empty' do
-      xit 'has a tail node which is the same as the appended node' do
+      it 'has a tail node which is the same as the appended node' do
         appended_node = linked_list.append(400)
         expect(linked_list.tail).to be(appended_node)
       end
@@ -78,7 +78,22 @@ RSpec.describe LinkedList do
   end
 
   describe '#tail' do
-    xit 'returns the last node in the list'
+    context 'when linked_list is empty' do
+      it 'returns a node with value of nil' do
+        expect(linked_list.tail.value).to be_nil
+      end
+
+      it 'returns the head node' do
+        expect(linked_list.tail).to be(linked_list.head)
+      end
+    end
+
+    context 'when a node with has been appended to the end of linked_list' do
+      it 'returns a that same last node' do
+        appended_node = linked_list.append(99)
+        expect(linked_list.tail).to be(appended_node)
+      end
+    end
   end
 
   describe '#at' do
