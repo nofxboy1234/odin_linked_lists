@@ -33,8 +33,21 @@ RSpec.describe Node do
       let(:another_node) { described_class.new('another_node') }
 
       it 'returns another_node' do
-        expect(node.next_node).to eq(another_node)
+        expect(node.next_node).to be(another_node)
       end
+    end
+  end
+
+  describe '#next_node=' do
+    subject(:node) { described_class.new }
+    let(:another_node) { described_class.new('another_node') }
+
+    before do
+      node.next_node = another_node
+    end
+
+    it 'updates the value of @next_node' do
+      expect(node.next_node).to be(another_node)
     end
   end
 end

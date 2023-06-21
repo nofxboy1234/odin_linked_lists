@@ -19,8 +19,8 @@ class Node
     @next_node
   end
 
-  def next_node=(value)
-    @next_node = value
+  def next_node=(node)
+    @next_node = node
   end
 end
 # rubocop:enable Style/TrivialAccessors
