@@ -68,8 +68,8 @@ RSpec.describe LinkedList do
       end
     end
 
-    context 'when linked_list has a node that is first in the list' do
-      it 'returns that first node' do
+    context 'when linked_list is not empty' do
+      it 'returns the first node' do
         first_node = linked_list.prepend(400)
         expect(linked_list.head).to be(first_node)
       end
