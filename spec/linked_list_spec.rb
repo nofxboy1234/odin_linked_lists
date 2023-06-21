@@ -31,11 +31,27 @@ RSpec.describe LinkedList do
   end
 
   describe '#size' do
-    it 'returns the total number of nodes in the list'
+    context 'when no nodes have been appended to the list' do
+      it 'returns 0' do
+        expect(linked_list.size).to eq(0)
+      end
+    end
+
+    context 'when 1 node has been appended to the list' do
+      it 'returns 1' do
+        linked_list.append(300)
+        expect(linked_list.size).to eq(1)
+      end
+    end
   end
 
   describe '#head' do
-    it 'returns the first node in the list'
+    context 'when a node with value 400 is prepended' do
+      it 'returns that node with value 400' do
+        linked_list.prepend(400)
+        expect(linked_list.head.value).to eq(400)
+      end
+    end
   end
 
   describe '#tail' do

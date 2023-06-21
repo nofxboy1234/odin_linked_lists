@@ -21,5 +21,13 @@ class LinkedList
     list.unshift(Node.new(value))
   end
 
+  def size
+    list.size
+  end
+
+  def head
+    list.first
+  end
+
 end
 # rubocop:enable Style/TrivialAccessors
