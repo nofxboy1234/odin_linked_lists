@@ -18,7 +18,16 @@ RSpec.describe LinkedList do
   end
 
   describe '#prepend' do
-    it 'adds a new node containing "value" to the start of the list'
+    context 'when a new node with value 200 is prepended' do
+      it 'increases the list size by 1' do
+        expect { linked_list.prepend(200) }.to change { list.size }.by(1)
+      end
+
+      it 'adds a new node containing value 200 to the end of the list' do
+        linked_list.prepend(200)
+        expect(list.first.value).to eq(200)
+      end
+    end
   end
 
   describe '#size' do
