@@ -5,29 +5,33 @@
 require_relative 'node'
 
 class LinkedList
-  def initialize
-    @list = []
-  end
+  # def initialize
+  #   @head = Node.new
+  # end
+  
+  # def append(value)
+  #   # if head.nil?
 
-  def list
-    @list
-  end
-
-  def append(value)
-    list.push(Node.new(value))
-  end
-
+  #   # end
+  #   head.value = value
+  # end
+  
   def prepend(value)
-    list.unshift(Node.new(value))
+    @head = create_node(value)
   end
-
-  def size
-    list.size
-  end
-
+  
+  # def size
+  #   head.size
+  # end
+  
   def head
-    list.first
+    @head ||= create_node
   end
 
+  private
+
+  def create_node(value = nil)
+    Node.new(value)
+  end
 end
 # rubocop:enable Style/TrivialAccessors
