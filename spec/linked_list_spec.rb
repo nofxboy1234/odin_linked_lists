@@ -1,8 +1,20 @@
 require './lib/linked_list'
 
 RSpec.describe LinkedList do
+  subject(:linked_list) { described_class.new }
+  let(:list) { linked_list.list }
+
   describe '#append' do
-    it 'adds a new node containing "value" to the end of the list'
+    context 'when a new node with value 100 is appended' do
+      it 'increases the list size by 1' do
+        expect { linked_list.append(100) }.to change { list.size }.by(1)
+      end
+
+      it 'adds a new node containing value 100 to the end of the list' do
+        linked_list.append(100)
+        expect(list.last.value).to eq(100)
+      end
+    end
   end
 
   describe '#prepend' do
@@ -40,5 +52,4 @@ RSpec.describe LinkedList do
   describe '#to_s' do
     it 'returns a string representation of the linked list'
   end
-
 end

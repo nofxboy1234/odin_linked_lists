@@ -1,6 +1,8 @@
-require 'pry-byebug'
-
 # frozen_string_literal: true
+
+# rubocop:disable Style/TrivialAccessors
+
+require 'pry-byebug'
 
 class Node
   def initialize(value = nil, next_node = nil)
@@ -13,7 +15,7 @@ class Node
   end
 
   def next_node
-    # binding.pry
     @next_node
   end
 end
+# rubocop:enable Style/TrivialAccessors
