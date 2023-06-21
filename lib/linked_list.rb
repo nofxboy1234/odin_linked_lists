@@ -7,10 +7,6 @@ require 'pry-byebug'
 require_relative 'node'
 
 class LinkedList
-  # def initialize
-  #   @head = Node.new
-  # end
-
   def append(value)
     increment_size
 
@@ -23,27 +19,11 @@ class LinkedList
   end
 
   def prepend(value)
-    # size += 1 # Error
-    # size = size + 1 # Error
-
-    # self.size += 1 # Error
-    # self.size = 1 # Error
-
-    # @size += 1 # Error
-
-    # a = size + 1
-    # @size = a
-    
-    # self.size = self.size + 1
-    # self.size = size + 1
-    # self.size += 1
-
     increment_size
     @head = create_node(value, head)
   end
 
   def size
-    # head.size
     @size ||= 0
   end
 
@@ -56,10 +36,6 @@ class LinkedList
   end
 
   private
-
-  # def size=(value)
-  #   @size = value
-  # end
 
   def create_node(value = nil, next_node = nil)
     Node.new(value, next_node)
