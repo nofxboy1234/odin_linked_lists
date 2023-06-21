@@ -11,12 +11,13 @@ class LinkedList
   #   @head = Node.new
   # end
 
-  # def append(value)
-  #   # if head.nil?
-
-  #   # end
-  #   head.value = value
-  # end
+  def append(value)
+    tmp = head
+    while tmp.next_node
+      tmp = tmp.next_node
+    end
+    tmp.next_node = create_node(value, nil)
+  end
 
   def prepend(value)
     # size += 1 # Error
@@ -34,9 +35,8 @@ class LinkedList
     # self.size = size + 1
     # self.size += 1
 
-    @size = size + 1
-
-    @head = create_node(value)
+    @size = size + 1 # instead of traversing and counting...
+    @head = create_node(value, head)
   end
 
   def size
@@ -54,8 +54,8 @@ class LinkedList
   #   @size = value
   # end
 
-  def create_node(value = nil)
-    Node.new(value)
+  def create_node(value = nil, next_node = nil)
+    Node.new(value, next_node)
   end
 end
 # rubocop:enable Style/TrivialAccessors
