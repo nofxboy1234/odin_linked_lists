@@ -36,7 +36,7 @@ class LinkedList
 
   def at(index)
     count = 0
-    
+
     tmp = head
     while tmp.next_node
       tmp = tmp.next_node
@@ -45,6 +45,30 @@ class LinkedList
     end
 
     tmp
+  end
+
+  def contains?(value)
+    tmp = head
+    while tmp.next_node
+      tmp = tmp.next_node
+      return true if tmp.value == value
+    end
+
+    false
+  end
+
+  def find(value)
+    count = 0
+
+    tmp = head
+    while tmp.next_node
+      tmp = tmp.next_node
+      count += 1
+      return count if tmp.value == value
+    end
+
+    # tmp.next_node
+    nil
   end
 
   private

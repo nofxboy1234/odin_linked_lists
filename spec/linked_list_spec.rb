@@ -113,11 +113,67 @@ RSpec.describe LinkedList do
   end
 
   describe '#contains?' do
-    xit 'returns true if the passed in value is in the list and otherwise returns false'
+    before do
+      linked_list.append(100)
+      linked_list.append(200)
+      linked_list.append(300)
+    end
+
+    context 'when the value 100 is in the linked list' do
+      it 'returns true' do
+        expect(linked_list.contains?(100)).to eq(true)
+      end
+    end
+
+    context 'when the value 200 is in the linked list' do
+      it 'returns true' do
+        expect(linked_list.contains?(200)).to eq(true)
+      end
+    end
+
+    context 'when the value 300 is in the linked list' do
+      it 'returns true' do
+        expect(linked_list.contains?(300)).to eq(true)
+      end
+    end
+
+    context 'when the value 400 is not in the linked list' do
+      it 'returns true' do
+        expect(linked_list.contains?(400)).to eq(false)
+      end
+    end
   end
 
   describe '#find' do
-    xit 'returns the index of the node containing "value", or nil if not found'
+    before do
+      linked_list.append(100)
+      linked_list.append(200)
+      linked_list.append(300)
+    end
+
+    context 'when the value 100 is in the linked list' do
+      it 'returns the index 1' do
+        expect(linked_list.find(100)).to eq(1)
+      end
+    end
+
+    context 'when the value 200 is in the linked list' do
+      it 'returns the index 2' do
+        expect(linked_list.find(200)).to eq(2)
+      end
+    end
+
+    context 'when the value 300 is in the linked list' do
+      it 'returns the index 3' do
+        expect(linked_list.find(300)).to eq(3)
+      end
+    end
+
+    context 'when the value 400 is not in the linked list' do
+      it 'returns nil' do
+        expect(linked_list.find(400)).to eq(nil)
+      end
+    end
   end
 
   describe '#to_s' do
