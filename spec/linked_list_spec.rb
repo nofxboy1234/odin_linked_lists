@@ -44,7 +44,7 @@ RSpec.describe LinkedList do
   end
 
   describe '#size' do
-    context 'when no nodes have been prepended/appended/inserted etc to the linke_list' do
+    context 'when no nodes have been prepended/appended/inserted etc to the linked_list' do
       it 'returns 0' do
         expect(linked_list.size).to eq(0)
       end
@@ -62,6 +62,10 @@ RSpec.describe LinkedList do
     context 'when linked_list is empty' do
       it 'returns a node with a nil value' do
         expect(linked_list.head.value).to be_nil
+      end
+
+      it 'does not increment @size' do
+        expect { linked_list.head }.not_to change { linked_list.size }
       end
     end
 

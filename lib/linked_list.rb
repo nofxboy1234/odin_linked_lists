@@ -12,6 +12,8 @@ class LinkedList
   # end
 
   def append(value)
+    increment_size
+
     tmp = head
     while tmp.next_node
       tmp = tmp.next_node
@@ -35,7 +37,7 @@ class LinkedList
     # self.size = size + 1
     # self.size += 1
 
-    @size = size + 1 # instead of traversing and counting...
+    increment_size
     @head = create_node(value, head)
   end
 
@@ -56,6 +58,10 @@ class LinkedList
 
   def create_node(value = nil, next_node = nil)
     Node.new(value, next_node)
+  end
+
+  def increment_size
+    @size = size + 1 # instead of traversing and counting...
   end
 end
 # rubocop:enable Style/TrivialAccessors
