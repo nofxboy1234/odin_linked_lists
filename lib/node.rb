@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# rubocop:disable Lint/RedundantCopDisableDirective
 # rubocop:disable Style/TrivialAccessors
 
 require 'pry-byebug'
@@ -19,3 +20,4 @@ class Node
   end
 end
 # rubocop:enable Style/TrivialAccessors
+# rubocop:enable Lint/RedundantCopDisableDirective
