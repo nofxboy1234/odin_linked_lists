@@ -18,6 +18,10 @@ class Node
   def next_node
     @next_node
   end
+
+  def next_node=(value)
+    @next_node = value
+  end
 end
 # rubocop:enable Style/TrivialAccessors
 # rubocop:enable Lint/RedundantCopDisableDirective
