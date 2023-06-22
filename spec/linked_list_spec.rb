@@ -203,9 +203,16 @@ RSpec.describe LinkedList do
 
   describe '#to_s' do
     context 'when printing linked_list' do
+      before do
+        linked_list.append(100)
+        linked_list.append(200)
+      end
+    
       it 'returns "linked_list"' do
-        expect(linked_list.to_s).to eq('linked_list')
-        expect { puts linked_list }.to output("linked_list\n").to_stdout
+        output = "( nil ) -> ( 100 ) -> ( 200 ) -> nil"
+
+        expect(linked_list.to_s).to eq(output)
+        expect { puts linked_list }.to output("#{output}\n").to_stdout
       end
     end
   end

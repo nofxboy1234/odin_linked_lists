@@ -79,7 +79,19 @@ class LinkedList
   end
 
   def to_s
-    'linked_list'
+    # 'linked_list'
+
+    values = []
+
+    tmp = head
+    while tmp
+      values.push(tmp.value || 'nil')
+
+      tmp = tmp.next_node
+      values.push('nil') if tmp.nil?
+    end
+
+    values.inject('') { |memo, operand| memo + "( #{operand} )" + ' -> ' }
   end
 
   def inspect
