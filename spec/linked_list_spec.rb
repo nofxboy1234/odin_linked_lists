@@ -211,7 +211,7 @@ RSpec.describe LinkedList do
       it 'returns "( nil ) -> ( 100 ) -> ( 200 ) -> nil"' do
         output = "( nil ) -> ( 100 ) -> ( 200 ) -> nil"
         expect(linked_list.to_s).to eq(output)
-        # expect { puts linked_list }.to output("#{output}\n").to_stdout
+        expect { puts linked_list }.to output("#{output}\n").to_stdout
       end
     end
   end

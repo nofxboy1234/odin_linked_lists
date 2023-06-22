@@ -92,8 +92,8 @@ class LinkedList
     end
 
     values.each_with_index.inject('') do |memo, operand|
-      puts "memo: #{memo}"
-      puts "operand: #{operand}"
+      # puts "memo: #{memo}"
+      # puts "operand: #{operand}"
 
       op = operand[0]
       index = operand[1]
