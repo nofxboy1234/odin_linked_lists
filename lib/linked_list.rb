@@ -79,8 +79,6 @@ class LinkedList
   end
 
   def to_s
-    # 'linked_list'
-
     values = []
 
     tmp = head
@@ -92,12 +90,8 @@ class LinkedList
     end
 
     values.each_with_index.inject('') do |memo, operand|
-      # puts "memo: #{memo}"
-      # puts "operand: #{operand}"
-
       op = operand[0]
       index = operand[1]
-      # binding.pry if operand == ["nil", 3]
 
       if index == values.size - 1
         str = memo + "#{op}"
@@ -105,7 +99,6 @@ class LinkedList
         str = memo + "( #{op} )"
       end
 
-      # unless op == 'nil'
       unless index == values.size - 1
         str = str + ' -> ' 
       end
@@ -115,7 +108,7 @@ class LinkedList
   end
 
   def inspect
-    'debug linked_list'
+    to_s
   end
 
   private

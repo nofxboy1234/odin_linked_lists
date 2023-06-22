@@ -210,6 +210,7 @@ RSpec.describe LinkedList do
     
       it 'returns "( nil ) -> ( 100 ) -> ( 200 ) -> nil"' do
         output = "( nil ) -> ( 100 ) -> ( 200 ) -> nil"
+        
         expect(linked_list.to_s).to eq(output)
         expect { puts linked_list }.to output("#{output}\n").to_stdout
       end
@@ -218,9 +219,16 @@ RSpec.describe LinkedList do
 
   describe '#inspect' do
     context 'when debug printing linked_list' do
-      it 'returns "debug linked_list"' do
-        expect(linked_list.inspect).to eq('debug linked_list')
-        expect { p linked_list }.to output("debug linked_list\n").to_stdout
+      before do
+        linked_list.append(100)
+        linked_list.append(200)
+      end
+
+      it 'returns "( nil ) -> ( 100 ) -> ( 200 ) -> nil"' do
+        output = "( nil ) -> ( 100 ) -> ( 200 ) -> nil"
+
+        expect(linked_list.inspect).to eq(output)
+        expect { p linked_list }.to output("#{output}\n").to_stdout
       end
     end
   end
