@@ -5,33 +5,41 @@ RSpec.describe LinkedList do
 
   describe '#append' do
     context 'when linked_list is empty' do
-      it 'increases the size of linked_list from 0 to 1' do
-        expect { linked_list.append(200) }.to change { linked_list.size }.from(0).to(1)
-      end
-
-      it 'sets @head to the node that is returned' do
-        appended_node = linked_list.append(200)
-        expect(linked_list.head).to be(appended_node)
-      end
-
-      it 'sets @tail to be the same node as @head' do
-        linked_list.append(200)
-        expect(linked_list.tail).to be(linked_list.head)
+      context 'when #append is called with a value of 200' do
+        it 'increases the size of linked_list from 0 to 1' do
+          expect { linked_list.append(200) }.to change { linked_list.size }.from(0).to(1)
+        end
+  
+        it 'sets @head to a node with the given value of 200' do
+          linked_list.append(200)
+          expect(linked_list.head.value).to eq(200)
+        end
+  
+        it 'sets @tail to be the same node as @head' do
+          linked_list.append(200)
+          expect(linked_list.tail).to be(linked_list.head)
+        end
       end
     end
 
-    context 'when linked_list is not empty' do
-      before do
-        linked_list.append(200)
-      end
+    context 'when linked_list has 1 existing node with a value of 200' do
+      context 'when #append is called with a value of 300' do
+        before do
+          linked_list.append(200)
+        end
+  
+        it 'increases the size of linked_list from 1 to 2' do
+          expect { linked_list.append(300) }.to change { linked_list.size }.from(1).to(2)
+        end
 
-      it 'increases the size of linked_list from 1 to 2' do
-        expect { linked_list.append(300) }.to change { linked_list.size }.from(1).to(2)
-      end
-
-      it 'sets @tail to the node that is returned' do
-        appended_node = linked_list.append(300)
-        expect(linked_list.tail).to be(appended_node)
+        it 'does not change @head' do
+          expect { linked_list.append(300) }.not_to change { linked_list.head }
+        end
+  
+        it 'sets @tail to a node with the given value of 300' do
+          linked_list.append(300)
+          expect(linked_list.tail.value).to eq(300)
+        end
       end
     end
   end
