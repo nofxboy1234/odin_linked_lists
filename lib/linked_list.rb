@@ -99,7 +99,11 @@ class LinkedList
       index = operand[1]
       # binding.pry if operand == ["nil", 3]
 
-      str = memo + "( #{op} )"
+      if index == values.size - 1
+        str = memo + "#{op}"
+      else
+        str = memo + "( #{op} )"
+      end
 
       # unless op == 'nil'
       unless index == values.size - 1
