@@ -10,11 +10,16 @@ class LinkedList
   def append(value)
     increment_size
 
-    tmp = head
-    tmp = tmp.next_node while tmp.next_node
-
-    tmp.next_node = create_node(value, nil)
-    @tail = tmp.next_node
+    if empty?
+      @head = create_node(value, nil)
+      @tail = head
+    else
+      tmp = head
+      tmp = tmp.next_node while tmp.next_node
+  
+      tmp.next_node = create_node(value, nil)
+      @tail = tmp.next_node
+    end
   end
 
   def prepend(value)
@@ -27,11 +32,11 @@ class LinkedList
   end
 
   def head
-    @head ||= create_node
+    @head
   end
 
   def tail
-    @tail ||= head
+    @tail
   end
 
   def at(index)
@@ -112,6 +117,10 @@ class LinkedList
   end
 
   private
+
+  def empty?
+    head.nil?
+  end
 
   def remove(value)
     # check if linked list is empty
