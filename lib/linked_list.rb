@@ -24,7 +24,13 @@ class LinkedList
 
   def prepend(value)
     increment_size
-    @head = create_node(value, head)
+
+    if empty?
+      @head = create_node(value, nil)
+      @tail = head
+    else
+      @head = create_node(value, head)
+    end
   end
 
   def size
@@ -77,7 +83,6 @@ class LinkedList
   end
 
   def pop
-    # binding.pry
     prev, cur = remove(tail.value)
     @tail = prev
     cur

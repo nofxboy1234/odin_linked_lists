@@ -4,11 +4,11 @@ RSpec.describe LinkedList do
   subject(:linked_list) { described_class.new }
 
   describe '#append' do
-    it 'increases the size of linked_list by 1' do
-      expect { linked_list.append(200) }.to change { linked_list.size }.by(1)
-    end
-    
     context 'when linked_list is empty' do
+      it 'increases the size of linked_list from 0 to 1' do
+        expect { linked_list.append(200) }.to change { linked_list.size }.from(0).to(1)
+      end
+
       it 'sets @head to the node that is returned' do
         appended_node = linked_list.append(200)
         expect(linked_list.head).to be(appended_node)
@@ -21,29 +21,42 @@ RSpec.describe LinkedList do
     end
 
     context 'when linked_list is not empty' do
+      before do
+        linked_list.append(200)
+      end
+
+      it 'increases the size of linked_list from 1 to 2' do
+        expect { linked_list.append(300) }.to change { linked_list.size }.from(1).to(2)
+      end
+
       it 'sets @tail to the node that is returned' do
-        appended_node = linked_list.append(200)
+        appended_node = linked_list.append(300)
         expect(linked_list.tail).to be(appended_node)
       end
     end
   end
 
   describe '#prepend' do
+    it 'increases the size of linked_list by 1' do
+      expect { linked_list.prepend(200) }.to change { linked_list.size }.by(1)
+    end
+    
     context 'when linked_list is empty' do
-      it 'increases the size of linked_list from 0 to 1' do
-        expect { linked_list.prepend(200) }.to change { linked_list.size }.from(0).to(1)
+      it 'sets @head to the node that is returned' do
+        prepended_node = linked_list.prepend(200)
+        expect(linked_list.head).to be(prepended_node)
+      end
+
+      it 'sets @tail to be the same node as @head' do
+        linked_list.prepend(200)
+        expect(linked_list.tail).to be(linked_list.head)
       end
     end
 
     context 'when linked_list is not empty' do
-      it 'has a head node which is the same as the prepended node' do
-        prepended_node = linked_list.prepend(400)
+      it 'sets @head to the node that is returned' do
+        prepended_node = linked_list.prepend(200)
         expect(linked_list.head).to be(prepended_node)
-      end
-
-      it 'increases the size of linked_list from 1 to 2' do
-        linked_list.prepend(700)
-        expect { linked_list.prepend(200) }.to change { linked_list.size }.from(1).to(2)
       end
     end
   end
@@ -119,7 +132,6 @@ RSpec.describe LinkedList do
       new_tail = linked_list.append(200)
       old_tail = linked_list.append(300)
       
-      # binding.pry
       expect(linked_list.pop).to be(old_tail)
     end
     
