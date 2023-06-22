@@ -73,8 +73,13 @@ class LinkedList
 
   def pop
     # binding.pry
-    remove(tail.value)
+    prev, cur = remove(tail.value)
+    @tail = prev
+    cur
   end
+
+  
+  private
 
   def remove(value)
     # check if linked list is empty
@@ -97,12 +102,10 @@ class LinkedList
     raise StandardError, 'Cannot delete. Node is not in the list!' if cur.nil?
 
     prev.next_node = cur.next_node
-    cur
+    [prev, cur]
   rescue StandardError => e
     puts e
   end
-
-  private
 
   def create_node(value = nil, next_node = nil)
     Node.new(value, next_node)

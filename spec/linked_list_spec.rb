@@ -109,22 +109,32 @@ RSpec.describe LinkedList do
   end
 
   describe '#pop' do
-    it 'sets @next_node of new @tail to nil'
-
     it 'returns the old_tail node that was removed' do
       linked_list.prepend(100)
       new_tail = linked_list.append(200)
       old_tail = linked_list.append(300)
-
+      
       # binding.pry
       expect(linked_list.pop).to be(old_tail)
     end
+    
+    it 'sets @tail to new_tail' do
+      linked_list.prepend(100)
+      new_tail = linked_list.append(200)
+      old_tail = linked_list.append(300)
 
-    xit 'sets @tail to the node before current @tail' do
-      appended_node = linked_list.append(22)
-      expect(linked_list.pop).to be(appended_node)
+      linked_list.pop
+      expect(linked_list.tail).to be(new_tail)
     end
 
+    it 'sets @next_node of new_tail to nil' do
+      linked_list.prepend(100)
+      new_tail = linked_list.append(200)
+      old_tail = linked_list.append(300)
+
+      linked_list.pop
+      expect(new_tail.next_node).to be_nil
+    end
   end
 
   describe '#contains?' do
