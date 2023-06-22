@@ -91,7 +91,23 @@ class LinkedList
       values.push('nil') if tmp.nil?
     end
 
-    values.inject('') { |memo, operand| memo + "( #{operand} )" + ' -> ' }
+    values.each_with_index.inject('') do |memo, operand|
+      puts "memo: #{memo}"
+      puts "operand: #{operand}"
+
+      op = operand[0]
+      index = operand[1]
+      # binding.pry if operand == ["nil", 3]
+
+      str = memo + "( #{op} )"
+
+      # unless op == 'nil'
+      unless index == values.size - 1
+        str = str + ' -> ' 
+      end
+
+      str
+    end
   end
 
   def inspect
