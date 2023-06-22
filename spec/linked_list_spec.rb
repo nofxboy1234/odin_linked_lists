@@ -202,6 +202,21 @@ RSpec.describe LinkedList do
   end
 
   describe '#to_s' do
-    xit 'returns a string representation of the linked list'
+    context 'when printing linked_list' do
+      it 'returns "linked_list"' do
+        expect(linked_list.to_s).to eq('linked_list')
+        expect { puts linked_list }.to output("linked_list\n").to_stdout
+      end
+    end
   end
+
+  describe '#inspect' do
+    context 'when debug printing linked_list' do
+      it 'returns "debug linked_list"' do
+        expect(linked_list.inspect).to eq('debug linked_list')
+        expect { p linked_list }.to output("debug linked_list\n").to_stdout
+      end
+    end
+  end
+
 end

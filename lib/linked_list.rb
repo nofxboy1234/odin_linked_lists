@@ -78,7 +78,14 @@ class LinkedList
     cur
   end
 
-  
+  def to_s
+    'linked_list'
+  end
+
+  def inspect
+    'debug linked_list'
+  end
+
   private
 
   def remove(value)
