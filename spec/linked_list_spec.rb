@@ -109,7 +109,22 @@ RSpec.describe LinkedList do
   end
 
   describe '#pop' do
-    xit 'removes the last element from the list'
+    it 'sets @next_node of new @tail to nil'
+
+    it 'returns the old_tail node that was removed' do
+      linked_list.prepend(100)
+      new_tail = linked_list.append(200)
+      old_tail = linked_list.append(300)
+
+      # binding.pry
+      expect(linked_list.pop).to be(old_tail)
+    end
+
+    xit 'sets @tail to the node before current @tail' do
+      appended_node = linked_list.append(22)
+      expect(linked_list.pop).to be(appended_node)
+    end
+
   end
 
   describe '#contains?' do

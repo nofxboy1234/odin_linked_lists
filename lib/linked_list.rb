@@ -71,6 +71,37 @@ class LinkedList
     nil
   end
 
+  def pop
+    # binding.pry
+    remove(tail.value)
+  end
+
+  def remove(value)
+    # check if linked list is empty
+    raise StandardError, 'Cannot delete. LinkedList is empty!' if head.nil?
+
+    # deleting the head node
+    if head.value == value
+      @head = head.next_node
+      return
+    end
+
+    cur = head
+    prev = nil
+
+    while cur && cur.value != value
+      prev = cur
+      cur = cur.next_node
+    end
+    # check if node is not in the linked list
+    raise StandardError, 'Cannot delete. Node is not in the list!' if cur.nil?
+
+    prev.next_node = cur.next_node
+    cur
+  rescue StandardError => e
+    puts e
+  end
+
   private
 
   def create_node(value = nil, next_node = nil)
