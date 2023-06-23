@@ -272,33 +272,86 @@ RSpec.describe LinkedList do
   end
 
   describe '#contains?' do
-    before do
-      linked_list.append(100)
-      linked_list.append(200)
-      linked_list.append(300)
-    end
-
-    context 'when the value 100 is in the linked list' do
-      it 'returns true' do
-        expect(linked_list.contains?(100)).to eq(true)
+    context 'when linked_list is empty' do
+      it 'returns false for any value' do
+        expect(linked_list.contains?(22)).to eq(false)
       end
     end
 
-    context 'when the value 200 is in the linked list' do
-      it 'returns true' do
-        expect(linked_list.contains?(200)).to eq(true)
-      end
-    end
+    context 'when linked_list is not empty' do
+      context 'when the value 100 is in the linked list' do
+        before do
+          linked_list.append(100)
+        end
 
-    context 'when the value 300 is in the linked list' do
-      it 'returns true' do
-        expect(linked_list.contains?(300)).to eq(true)
-      end
-    end
+        context 'when checking if it contains value 100' do
+          it 'returns true' do
+            expect(linked_list.contains?(100)).to eq(true)
+          end
+        end
 
-    context 'when the value 400 is not in the linked list' do
-      it 'returns true' do
-        expect(linked_list.contains?(400)).to eq(false)
+        context 'when checking if it contains value 400' do
+          it 'returns false' do
+            expect(linked_list.contains?(400)).to eq(false)
+          end
+        end
+      end
+
+      context 'when values 100, 200 are in the linked list' do
+        before do
+          linked_list.append(100)
+          linked_list.append(200)
+        end
+
+        context 'when checking if it contains value 100' do
+          it 'returns true' do
+            expect(linked_list.contains?(100)).to eq(true)
+          end
+        end
+
+        context 'when checking if it contains value 200' do
+          it 'returns true' do
+            expect(linked_list.contains?(200)).to eq(true)
+          end
+        end
+
+        context 'when checking if it contains value 400' do
+          it 'returns false' do
+            expect(linked_list.contains?(400)).to eq(false)
+          end
+        end
+      end
+
+      context 'when values 100, 200, 300 are in the linked list' do
+        before do
+          linked_list.append(100)
+          linked_list.append(200)
+          linked_list.append(300)
+        end
+
+        context 'when checking if it contains value 100' do
+          it 'returns true' do
+            expect(linked_list.contains?(100)).to eq(true)
+          end
+        end
+
+        context 'when checking if it contains value 200' do
+          it 'returns true' do
+            expect(linked_list.contains?(200)).to eq(true)
+          end
+        end
+
+        context 'when checking if it contains value 300' do
+          it 'returns true' do
+            expect(linked_list.contains?(300)).to eq(true)
+          end
+        end
+
+        context 'when checking if it contains value 400' do
+          it 'returns false' do
+            expect(linked_list.contains?(400)).to eq(false)
+          end
+        end
       end
     end
   end

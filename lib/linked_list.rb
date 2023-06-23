@@ -69,10 +69,12 @@ class LinkedList
   end
 
   def contains?(value)
+    return false if empty?
+
     tmp = head
-    while tmp.next_node
-      tmp = tmp.next_node
+    while tmp
       return true if tmp.value == value
+      tmp = tmp.next_node
     end
 
     false
