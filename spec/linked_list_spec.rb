@@ -185,6 +185,11 @@ RSpec.describe LinkedList do
         last_node = linked_list.append(400)
         expect(linked_list.tail).to be(last_node)
       end
+
+      it 'has next_node set to nil' do
+        last_node = linked_list.append(400)
+        expect(linked_list.tail.next_node).to be_nil
+      end
     end
   end
 
