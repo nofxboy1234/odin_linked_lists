@@ -45,6 +45,11 @@ RSpec.describe LinkedList do
           expect(linked_list.head).to receive(:next_node).exactly(2).times
           linked_list.append(300)
         end
+
+        it 'sends #next_node= message to the last node @head (the head and tail) exactly 1 time' do
+          expect(linked_list.head).to receive(:next_node=).exactly(1).time
+          linked_list.append(300)
+        end
       end
     end
 
