@@ -22,7 +22,7 @@ RSpec.describe LinkedList do
       end
     end
 
-    context 'when linked_list has 1 existing node with a value of 200' do
+    context 'when linked_list has 1 existing node (the head) with a value of 200' do
       context 'when #append is called with a value of 300' do
         before do
           linked_list.append(200)
@@ -39,6 +39,14 @@ RSpec.describe LinkedList do
         it 'sets @tail to a node with the given value of 300' do
           linked_list.append(300)
           expect(linked_list.tail.value).to eq(300)
+        end
+
+        it 'sends #next_node message to @head exactly 2 times (1 time in while loop condition, 1 time when updating @tail)' do
+          expect(linked_list.head).to receive(:next_node).exactly(2).times
+          # expect(linked_list).to receive(:create_node).and_return('hello')
+          # expect(linked_list).to receive(:create_node).and_call_original
+
+          linked_list.append(300)
         end
       end
     end
