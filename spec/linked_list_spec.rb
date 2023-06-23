@@ -43,10 +43,34 @@ RSpec.describe LinkedList do
 
         it 'sends #next_node message to @head exactly 2 times (1 time in while loop condition, 1 time when updating @tail)' do
           expect(linked_list.head).to receive(:next_node).exactly(2).times
-          # expect(linked_list).to receive(:create_node).and_return('hello')
-          # expect(linked_list).to receive(:create_node).and_call_original
-
           linked_list.append(300)
+        end
+      end
+    end
+
+    context 'when linked_list has 2 existing nodes (1 head and 1 tail) with values of 200, 300' do
+      context 'when #append is called with a value of 400' do
+        before do
+          linked_list.append(200)
+          linked_list.append(300)
+        end
+  
+        it 'increases the size of linked_list from 2 to 3' do
+          expect { linked_list.append(400) }.to change { linked_list.size }.from(2).to(3)
+        end
+
+        it 'does not change @head' do
+          expect { linked_list.append(400) }.not_to change { linked_list.head }
+        end
+  
+        it 'sets @tail to a node with the given value of 400' do
+          linked_list.append(400)
+          expect(linked_list.tail.value).to eq(400)
+        end
+
+        it 'sends #next_node message to @head exactly 2 times (1 time in while loop condition, 1 time in while loop body, 0 times when updating @tail)' do
+          expect(linked_list.head).to receive(:next_node).exactly(2).times
+          linked_list.append(400)
         end
       end
     end
