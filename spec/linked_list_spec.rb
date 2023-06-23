@@ -339,13 +339,12 @@ RSpec.describe LinkedList do
     end
 
     context 'when linked_list is not empty' do
-      it 'sets @tail to the new tail node' do
+      it 'decreases the size of linked_list by 1' do
         linked_list.append(100)
-        new_tail = linked_list.append(200)
+        linked_list.append(200)
         linked_list.append(300)
-
-        linked_list.pop
-        expect(linked_list.tail).to be(new_tail)
+        
+        expect { linked_list.pop }.to change { linked_list.size }.by(-1)
       end
 
       it 'sets next_node of the new tail node to nil' do
@@ -355,6 +354,15 @@ RSpec.describe LinkedList do
 
         linked_list.pop
         expect(new_tail.next_node).to be_nil
+      end
+
+      it 'sets @tail to the new tail node' do
+        linked_list.append(100)
+        new_tail = linked_list.append(200)
+        linked_list.append(300)
+
+        linked_list.pop
+        expect(linked_list.tail).to be(new_tail)
       end
 
       it 'returns the old tail node that was removed' do

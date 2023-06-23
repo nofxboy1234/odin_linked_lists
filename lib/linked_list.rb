@@ -63,6 +63,8 @@ class LinkedList
   def pop
     return nil if empty?
 
+    decrement_size
+
     prev, cur = remove(tail.value)
     @tail = prev
     cur
@@ -164,6 +166,10 @@ class LinkedList
 
   def increment_size
     @size = size + 1 # instead of traversing and counting...
+  end
+
+  def decrement_size
+    @size = size - 1
   end
 end
 # rubocop:enable Style/TrivialAccessors
