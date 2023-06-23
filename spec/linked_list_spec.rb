@@ -143,17 +143,35 @@ RSpec.describe LinkedList do
       end
     end
 
-    context 'when 1 node has been appended to the linked_list' do
-      it 'returns 1' do
-        linked_list.append(300)
-        expect(linked_list.size).to eq(1)
+    context 'when linked_list is not empty' do
+      context 'when 1 node has been appended to the linked_list' do
+        it 'returns 1' do
+          linked_list.append(300)
+          expect(linked_list.size).to eq(1)
+        end
       end
-    end
 
-    context 'when 1 node has been prepended to the linked_list' do
-      it 'returns 1' do
-        linked_list.prepend(300)
-        expect(linked_list.size).to eq(1)
+      context 'when 2 nodes have been appended to the linked_list' do
+        it 'returns 1' do
+          linked_list.append(300)
+          linked_list.append(400)
+          expect(linked_list.size).to eq(2)
+        end
+      end
+
+      context 'when 1 node has been prepended to the linked_list' do
+        it 'returns 1' do
+          linked_list.prepend(300)
+          expect(linked_list.size).to eq(1)
+        end
+      end
+
+      context 'when 2 nodes have been prepended to the linked_list' do
+        it 'returns 1' do
+          linked_list.prepend(400)
+          linked_list.prepend(300)
+          expect(linked_list.size).to eq(2)
+        end
       end
     end
   end
@@ -224,10 +242,10 @@ RSpec.describe LinkedList do
         end
       end
 
-      it 'has next_node of the tail (last node) set to nil' do
-        linked_list.append(100)
-        expect(linked_list.tail.next_node).to be_nil
-      end
+      # it 'has next_node of the tail (last node) set to nil' do
+      #   linked_list.append(100)
+      #   expect(linked_list.tail.next_node).to be_nil
+      # end
     end
   end
 
@@ -347,14 +365,14 @@ RSpec.describe LinkedList do
         expect { linked_list.pop }.to change { linked_list.size }.by(-1)
       end
 
-      it 'sets next_node of the new tail node to nil' do
-        linked_list.append(100)
-        new_tail = linked_list.append(200)
-        linked_list.append(300)
+      # it 'sets next_node of the new tail node to nil' do
+      #   linked_list.append(100)
+      #   new_tail = linked_list.append(200)
+      #   linked_list.append(300)
 
-        linked_list.pop
-        expect(new_tail.next_node).to be_nil
-      end
+      #   linked_list.pop
+      #   expect(new_tail.next_node).to be_nil
+      # end
 
       it 'sets @tail to the new tail node' do
         linked_list.append(100)

@@ -92,7 +92,6 @@ class LinkedList
       return count if tmp.value == value
     end
 
-    # tmp.next_node
     nil
   end
 
