@@ -59,6 +59,14 @@ class LinkedList
 
     tmp
   end
+  
+  def pop
+    return nil if empty?
+
+    prev, cur = remove(tail.value)
+    @tail = prev
+    cur
+  end
 
   def contains?(value)
     tmp = head
@@ -84,11 +92,6 @@ class LinkedList
     nil
   end
 
-  def pop
-    prev, cur = remove(tail.value)
-    @tail = prev
-    cur
-  end
 
   def to_s
     values = []
