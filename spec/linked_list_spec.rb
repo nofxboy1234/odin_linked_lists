@@ -82,26 +82,56 @@ RSpec.describe LinkedList do
   end
 
   describe '#prepend' do
-    it 'increases the size of linked_list by 1' do
-      expect { linked_list.prepend(200) }.to change { linked_list.size }.by(1)
-    end
-    
     context 'when linked_list is empty' do
-      it 'sets @head to the node that is returned' do
-        prepended_node = linked_list.prepend(200)
-        expect(linked_list.head).to be(prepended_node)
-      end
+      context 'when #prepend is called with a value of 200' do
+        it 'increases the size of linked_list from 0 to 1' do
+          expect { linked_list.prepend(200) }.to change { linked_list.size }.from(0).to(1)
+        end
 
-      it 'sets @tail to be the same node as @head' do
-        linked_list.prepend(200)
-        expect(linked_list.tail).to be(linked_list.head)
+        it 'sets @head to a node with the given value of 200' do
+          linked_list.prepend(200)
+          expect(linked_list.head.value).to eq(200)
+        end
+  
+        it 'sets @tail to be the same node as @head' do
+          linked_list.prepend(200)
+          expect(linked_list.tail).to be(linked_list.head)
+        end
       end
     end
 
-    context 'when linked_list is not empty' do
-      it 'sets @head to the node that is returned' do
-        prepended_node = linked_list.prepend(200)
-        expect(linked_list.head).to be(prepended_node)
+    context 'when linked_list has 1 existing node (the head) with a value of 200' do
+      context 'when #prepend is called with a value of 300' do
+        before do
+          linked_list.prepend(200)
+        end
+  
+        it 'increases the size of linked_list from 1 to 2' do
+          expect { linked_list.prepend(300) }.to change { linked_list.size }.from(1).to(2)
+        end
+
+        it 'sets @head to a node with the given value of 300' do
+          linked_list.prepend(300)
+          expect(linked_list.head.value).to eq(300)
+        end
+      end
+    end
+
+    context 'when linked_list has 2 existing nodes (1 head and 1 tail) with values of 200, 300' do
+      context 'when #prepend is called with a value of 400' do
+        before do
+          linked_list.prepend(200)
+          linked_list.prepend(300)
+        end
+  
+        it 'increases the size of linked_list from 2 to 3' do
+          expect { linked_list.prepend(400) }.to change { linked_list.size }.from(2).to(3)
+        end
+
+        it 'sets @head to a node with the given value of 400' do
+          linked_list.prepend(400)
+          expect(linked_list.head.value).to eq(400)
+        end
       end
     end
   end
