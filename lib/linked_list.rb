@@ -50,7 +50,7 @@ class LinkedList
 
     count = 0
     tmp = head
-    while tmp.next_node
+    while tmp
       break if count == index
 
       tmp = tmp.next_node
