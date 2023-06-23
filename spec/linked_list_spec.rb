@@ -247,6 +247,15 @@ RSpec.describe LinkedList do
         expect(linked_list.tail).to be(new_tail)
       end
 
+      it 'sets next_node of the new tail node to nil' do
+        linked_list.append(100)
+        new_tail = linked_list.append(200)
+        linked_list.append(300)
+
+        linked_list.pop
+        expect(new_tail.next_node).to be_nil
+      end
+
       it 'returns the old tail node that was removed' do
         linked_list.append(100)
         linked_list.append(200)
