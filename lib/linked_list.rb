@@ -16,7 +16,7 @@ class LinkedList
     else
       tmp = head
       tmp = tmp.next_node while tmp.next_node
-  
+
       tmp.next_node = create_node(value, nil)
       @tail = tmp.next_node
     end
@@ -46,13 +46,15 @@ class LinkedList
   end
 
   def at(index)
-    count = 0
+    return nil if empty?
 
+    count = 0
     tmp = head
     while tmp.next_node
+      break if count == index
+
       tmp = tmp.next_node
       count += 1
-      break if count == index
     end
 
     tmp
@@ -103,15 +105,13 @@ class LinkedList
       op = operand[0]
       index = operand[1]
 
-      if index == values.size - 1
-        str = memo + "#{op}"
-      else
-        str = memo + "( #{op} )"
-      end
+      str = if index == values.size - 1
+              memo + "#{op}"
+            else
+              memo + "( #{op} )"
+            end
 
-      unless index == values.size - 1
-        str = str + ' -> ' 
-      end
+      str += ' -> ' unless index == values.size - 1
 
       str
     end

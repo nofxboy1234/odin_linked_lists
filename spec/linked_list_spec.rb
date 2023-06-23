@@ -189,13 +189,43 @@ RSpec.describe LinkedList do
   end
 
   describe '#at' do
-    context 'when 3 nodes of values 100, 200, 300 are appended to an empty linked_list' do
-      it 'returns the node at the given index' do
-        appended_node100 = linked_list.append(100)
-        appended_node200 = linked_list.append(200)
-        appended_node300 = linked_list.append(300)
+    context 'when linked_list is empty' do
+      it 'returns nil' do
+        expect(linked_list.at(0)).to be_nil
+      end
+    end
 
-        expect(linked_list.at(1)).to be(appended_node100)
+    context 'when linked_list is not empty' do
+      context 'when 3 nodes of values 100, 200, 300 are appended to the empty linked_list' do
+        context 'when the given index is 0' do
+          it 'returns the node at index 0 (head node)' do
+            appended_node100 = linked_list.append(100)
+            linked_list.append(200)
+            linked_list.append(300)
+    
+            expect(linked_list.at(0)).to be(appended_node100)
+          end
+        end
+
+        context 'when the given index is 1' do
+          it 'returns the node at index 1' do
+            linked_list.append(100)
+            appended_node200 = linked_list.append(200)
+            linked_list.append(300)
+    
+            expect(linked_list.at(1)).to be(appended_node200)
+          end
+        end
+
+        context 'when the given index is 2' do
+          it 'returns the node at index 2 (tail node)' do
+            linked_list.append(100)
+            linked_list.append(200)
+            appended_node300 = linked_list.append(300)
+    
+            expect(linked_list.at(2)).to be(appended_node300)
+          end
+        end
       end
     end
   end
