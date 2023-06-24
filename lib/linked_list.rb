@@ -19,7 +19,14 @@ class LinkedList
 
       tmp.next_node = create_node(value, nil)
       @tail = tmp.next_node
+
+      puts "sum -----------#{sum(1, 2)}"
+      # puts "sum -----------#{sum(1, 2)}"
     end
+  end
+
+  def sum(a, b)
+    a + b
   end
 
   def prepend(value)

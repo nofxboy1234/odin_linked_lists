@@ -50,6 +50,22 @@ RSpec.describe LinkedList do
           expect(linked_list.head).to receive(:next_node=).exactly(1).time
           linked_list.append(300)
         end
+
+        it 'sends #next_node message to any instance of Node at least once' do
+          expect_any_instance_of(Node).to receive(:next_node).at_least(1).time
+          linked_list.append(300)
+        end
+
+        it 'sends #sum message to linked_list exactly 1 time' do
+          # expect(linked_list).to receive(:sum)
+          # expect(linked_list).to receive(:sum).and_call_original
+          # expect(linked_list).to receive(:sum).with(1, 3)
+          # expect(linked_list).to receive(:sum).with(1, 2).twice
+          # expect(linked_list).to receive(:sum).with(1, an_instance_of(Integer))
+          # expect(linked_list).to receive(:sum).with(an_instance_of(Integer), an_instance_of(Integer))
+
+          linked_list.append(300)
+        end
       end
     end
 
