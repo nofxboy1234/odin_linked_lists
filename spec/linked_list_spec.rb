@@ -19,6 +19,11 @@ RSpec.describe LinkedList do
           linked_list.append(200)
           expect(linked_list.tail).to be(linked_list.head)
         end
+
+        it 'sends #next_node message to any instance of Node never' do
+          expect_any_instance_of(Node).to receive(:next_node).never
+          linked_list.append(300)
+        end
       end
     end
 
@@ -42,28 +47,17 @@ RSpec.describe LinkedList do
         end
 
         it 'sends #next_node message to @head exactly 2 times (1 time in while loop condition, 1 time when updating @tail)' do
-          expect(linked_list.head).to receive(:next_node).exactly(2).times
+          expect(linked_list.head).to receive(:next_node).exactly(2).times.and_call_original
           linked_list.append(300)
         end
 
-        it 'sends #next_node= message to the last node @head (the head and tail) exactly 1 time' do
-          expect(linked_list.head).to receive(:next_node=).exactly(1).time
+        it 'sends #next_node message to any instance of Node exactly 2 times' do
+          expect_any_instance_of(Node).to receive(:next_node).exactly(2).times.and_call_original
           linked_list.append(300)
         end
 
-        it 'sends #next_node message to any instance of Node at least once' do
-          expect_any_instance_of(Node).to receive(:next_node).at_least(1).time
-          linked_list.append(300)
-        end
-
-        it 'sends #sum message to linked_list exactly 1 time' do
-          # expect(linked_list).to receive(:sum)
-          # expect(linked_list).to receive(:sum).and_call_original
-          # expect(linked_list).to receive(:sum).with(1, 3)
-          # expect(linked_list).to receive(:sum).with(1, 2).twice
-          # expect(linked_list).to receive(:sum).with(1, an_instance_of(Integer))
-          # expect(linked_list).to receive(:sum).with(an_instance_of(Integer), an_instance_of(Integer))
-
+        it 'sends #next_node= message to the last node @head (the head and tail in this case) exactly 1 time' do
+          expect(linked_list.head).to receive(:next_node=).exactly(1).time.and_call_original
           linked_list.append(300)
         end
       end
@@ -74,6 +68,7 @@ RSpec.describe LinkedList do
         before do
           linked_list.append(200)
           linked_list.append(300)
+          # puts '-------------------------------------------------------'
         end
 
         it 'increases the size of linked_list from 2 to 3' do
@@ -90,7 +85,17 @@ RSpec.describe LinkedList do
         end
 
         it 'sends #next_node message to @head exactly 2 times (1 time in while loop condition, 1 time in while loop body, 0 times when updating @tail)' do
-          expect(linked_list.head).to receive(:next_node).exactly(2).times
+          expect(linked_list.head).to receive(:next_node).exactly(2).times.and_call_original
+          linked_list.append(400)
+        end
+
+        it 'sends #next_node message to any instance of Node exactly 2 times - 2 times for 200, 2 times for 300' do
+          expect_any_instance_of(Node).to receive(:next_node).exactly(2).times
+          linked_list.append(400)
+        end
+
+        it 'sends #next_node= message to any instance of Node exactly 1 time' do
+          expect_any_instance_of(Node).to receive(:next_node=).exactly(1).time.and_call_original
           linked_list.append(400)
         end
       end

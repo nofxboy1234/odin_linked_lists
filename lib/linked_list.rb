@@ -7,11 +7,13 @@ require 'pry-byebug'
 require_relative 'node'
 
 class LinkedList
+  @current_head = nil
+
   def append(value)
     increment_size
 
     if empty?
-      @head = create_node(value, nil)
+      self.head = create_node(value, nil)
       @tail = head
     else
       tmp = head
@@ -19,9 +21,6 @@ class LinkedList
 
       tmp.next_node = create_node(value, nil)
       @tail = tmp.next_node
-
-      puts "sum -----------#{sum(1, 2)}"
-      # puts "sum -----------#{sum(1, 2)}"
     end
   end
 
@@ -33,10 +32,10 @@ class LinkedList
     increment_size
 
     if empty?
-      @head = create_node(value, nil)
+      self.head = create_node(value, nil)
       @tail = head
     else
-      @head = create_node(value, head)
+      self.head = create_node(value, head)
     end
   end
 
@@ -66,7 +65,7 @@ class LinkedList
 
     tmp
   end
-  
+
   def pop
     return nil if empty?
 
@@ -83,6 +82,7 @@ class LinkedList
     tmp = head
     while tmp
       return true if tmp.value == value
+
       tmp = tmp.next_node
     end
 
@@ -101,7 +101,6 @@ class LinkedList
 
     nil
   end
-
 
   def to_s
     values = []
@@ -134,7 +133,21 @@ class LinkedList
     to_s
   end
 
+  def self.update_current_head(head)
+    @current_head = head
+  end
+  # private_class_method :update_current_head
+
+  def self.current_head
+    @current_head
+  end
+
   private
+
+  def head=(value)
+    self.class.update_current_head(value)
+    @head = value
+  end
 
   def empty?
     head.nil?
@@ -146,7 +159,7 @@ class LinkedList
 
     # deleting the head node
     if head.value == value
-      @head = head.next_node
+      self.head = head.next_node
       return
     end
 
