@@ -326,11 +326,6 @@ RSpec.describe LinkedList do
           expect(linked_list.tail).to be(last_node)
         end
       end
-
-      # it 'has next_node of the tail (last node) set to nil' do
-      #   linked_list.append(100)
-      #   expect(linked_list.tail.next_node).to be_nil
-      # end
     end
   end
 
@@ -344,17 +339,15 @@ RSpec.describe LinkedList do
     context 'when linked_list is not empty' do
       context 'when value 100 is in the list' do
         context 'when the given index is 0' do
-          it 'returns the node with value 100 (head and tail node)' do
+          it 'returns the node with value 100' do
             appended_node100 = linked_list.append(100)
-
             expect(linked_list.at(0)).to be(appended_node100)
           end
         end
 
-        context 'when index 3 is not in the list' do
+        context 'when the given index 3 is not in the list' do
           it 'returns nil' do
             linked_list.append(100)
-
             expect(linked_list.at(3)).to be_nil
           end
         end
@@ -362,24 +355,22 @@ RSpec.describe LinkedList do
 
       context 'when values 100, 200 are in the list' do
         context 'when the given index is 0' do
-          it 'returns the node with value 100 (head node)' do
+          it 'returns the node with value 100' do
             appended_node100 = linked_list.append(100)
             linked_list.append(200)
-
             expect(linked_list.at(0)).to be(appended_node100)
           end
         end
 
         context 'when the given index is 1' do
-          it 'returns the node with value 200 (tail node)' do
+          it 'returns the node with value 200' do
             linked_list.append(100)
             appended_node200 = linked_list.append(200)
-
             expect(linked_list.at(1)).to be(appended_node200)
           end
         end
 
-        context 'when index 3 is not in the list' do
+        context 'when the given index 3 is not in the list' do
           it 'returns nil' do
             linked_list.append(100)
             linked_list.append(200)
@@ -391,7 +382,7 @@ RSpec.describe LinkedList do
 
       context 'when values 100, 200, 300 are in the list' do
         context 'when the given index is 0' do
-          it 'returns the node with value 100 (head node)' do
+          it 'returns the node with value 100' do
             appended_node100 = linked_list.append(100)
             linked_list.append(200)
             linked_list.append(300)
@@ -411,7 +402,7 @@ RSpec.describe LinkedList do
         end
 
         context 'when the given index is 2' do
-          it 'returns the node with value 300 (tail node)' do
+          it 'returns the node with value 300' do
             linked_list.append(100)
             linked_list.append(200)
             appended_node300 = linked_list.append(300)
@@ -420,7 +411,7 @@ RSpec.describe LinkedList do
           end
         end
 
-        context 'when index 3 is not in the list' do
+        context 'when the given index 3 is not in the list' do
           it 'returns nil' do
             linked_list.append(100)
             linked_list.append(200)
