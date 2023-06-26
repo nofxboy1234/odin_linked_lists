@@ -151,23 +151,25 @@ RSpec.describe LinkedList do
   describe '#prepend' do
     context 'when linked_list is empty' do
       context 'when #prepend is called with a value of 200' do
+        let(:prepend200) { linked_list.prepend(200) }
+
         it 'increases the size of linked_list from 0 to 1' do
           expect { linked_list.prepend(200) }.to change { linked_list.size }.from(0).to(1)
         end
 
         it 'sets @head to a node with the given value of 200' do
-          linked_list.prepend(200)
+          prepend200
           expect(linked_list.head.value).to eq(200)
         end
 
         it 'sets @tail to be the same node as @head' do
-          linked_list.prepend(200)
+          prepend200
           expect(linked_list.tail).to be(linked_list.head)
         end
       end
     end
 
-    context 'when linked_list has 1 existing node (the head) with a value of 200' do
+    context 'when linked_list has 1 existing node with a value of 200' do
       context 'when #prepend is called with a value of 300' do
         before do
           linked_list.prepend(200)
@@ -181,10 +183,14 @@ RSpec.describe LinkedList do
           linked_list.prepend(300)
           expect(linked_list.head.value).to eq(300)
         end
+
+        it 'does not change @tail' do
+          expect { linked_list.prepend(300) }.not_to change { linked_list.tail }
+        end
       end
     end
 
-    context 'when linked_list has 2 existing nodes (1 head and 1 tail) with values of 200, 300' do
+    context 'when linked_list has 2 existing nodes with values of 200, 300' do
       context 'when #prepend is called with a value of 400' do
         before do
           linked_list.prepend(200)
@@ -198,6 +204,33 @@ RSpec.describe LinkedList do
         it 'sets @head to a node with the given value of 400' do
           linked_list.prepend(400)
           expect(linked_list.head.value).to eq(400)
+        end
+
+        it 'does not change @tail' do
+          expect { linked_list.prepend(400) }.not_to change { linked_list.tail }
+        end
+      end
+    end
+
+    context 'when linked_list has 3 existing nodes with values of 200, 300, 400' do
+      context 'when #prepend is called with a value of 500' do
+        before do
+          linked_list.prepend(200)
+          linked_list.prepend(300)
+          linked_list.prepend(400)
+        end
+
+        it 'increases the size of linked_list from 3 to 4' do
+          expect { linked_list.prepend(500) }.to change { linked_list.size }.from(3).to(4)
+        end
+
+        it 'sets @head to a node with the given value of 400' do
+          linked_list.prepend(500)
+          expect(linked_list.head.value).to eq(500)
+        end
+
+        it 'does not change @tail' do
+          expect { linked_list.prepend(500) }.not_to change { linked_list.tail }
         end
       end
     end
