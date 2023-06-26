@@ -539,7 +539,7 @@ RSpec.describe LinkedList do
     end
 
     context 'when linked_list is not empty' do
-      context 'when the value 100 is in the linked list' do
+      context 'when value 100 is in the list' do
         before do
           linked_list.append(100)
         end
@@ -557,7 +557,7 @@ RSpec.describe LinkedList do
         end
       end
 
-      context 'when values 100, 200 are in the linked list' do
+      context 'when values 100, 200 are in the list' do
         before do
           linked_list.append(100)
           linked_list.append(200)
@@ -583,31 +583,155 @@ RSpec.describe LinkedList do
       end
 
       context 'when values 100, 200, 300 are in the linked list' do
+        let(:append100) { linked_list.append(100) }
+        let(:append200) { linked_list.append(200) }
+        let(:append300) { linked_list.append(300) }
+
         before do
-          linked_list.append(100)
-          linked_list.append(200)
-          linked_list.append(300)
+          append100
+          append200
+          append300
         end
 
         context 'when checking if it contains value 100' do
+          it 'sends #value message to value 100 node exactly 1 time' do
+            expect(append100).to receive(:value).exactly(1).time
+            linked_list.contains?(100)
+          end
+
+          it 'sends #next_node message to value 100 node exactly 1 time' do
+            expect(append100).not_to receive(:next_node)
+            linked_list.contains?(100)
+          end
+
+          it 'sends #value message to value 200 node exactly 1 time' do
+            expect(append200).not_to receive(:value)
+            linked_list.contains?(100)
+          end
+
+          it 'sends #next_node message to value 200 node' do
+            expect(append200).not_to receive(:next_node)
+            linked_list.contains?(100)
+          end
+
+          it 'sends #value message to value 300 node exactly 1 time' do
+            expect(append300).not_to receive(:value)
+            linked_list.contains?(100)
+          end
+
+          it 'does not send #next_node message to value 300 node' do
+            expect(append300).not_to receive(:next_node)
+            linked_list.contains?(100)
+          end
+
           it 'returns true' do
             expect(linked_list.contains?(100)).to eq(true)
           end
         end
 
         context 'when checking if it contains value 200' do
+          it 'sends #value message to value 100 node exactly 1 time' do
+            expect(append100).to receive(:value).exactly(1).time
+            linked_list.contains?(200)
+          end
+
+          it 'sends #next_node message to value 100 node exactly 1 time' do
+            expect(append100).to receive(:next_node).exactly(1).time
+            linked_list.contains?(200)
+          end
+
+          it 'sends #value message to value 200 node exactly 1 time' do
+            expect(append200).to receive(:value).exactly(1).time
+            linked_list.contains?(200)
+          end
+
+          it 'sends #next_node message to value 200 node' do
+            expect(append200).not_to receive(:next_node)
+            linked_list.contains?(200)
+          end
+
+          it 'sends #value message to value 300 node exactly 1 time' do
+            expect(append300).not_to receive(:value)
+            linked_list.contains?(200)
+          end
+
+          it 'does not send #next_node message to value 300 node' do
+            expect(append300).not_to receive(:next_node)
+            linked_list.contains?(200)
+          end
+
           it 'returns true' do
             expect(linked_list.contains?(200)).to eq(true)
           end
         end
 
         context 'when checking if it contains value 300' do
+          it 'sends #value message to value 100 node exactly 1 time' do
+            expect(append100).to receive(:value).exactly(1).time
+            linked_list.contains?(300)
+          end
+
+          it 'sends #next_node message to value 100 node exactly 1 time' do
+            expect(append100).to receive(:next_node).exactly(1).time
+            linked_list.contains?(300)
+          end
+
+          it 'sends #value message to value 200 node exactly 1 time' do
+            expect(append200).to receive(:value).exactly(1).time
+            linked_list.contains?(300)
+          end
+
+          it 'sends #next_node message to value 200 node' do
+            expect(append200).to receive(:next_node).exactly(1).time
+            linked_list.contains?(300)
+          end
+
+          it 'sends #value message to value 300 node exactly 1 time' do
+            expect(append300).to receive(:value).exactly(1).time
+            linked_list.contains?(300)
+          end
+
+          it 'does not send #next_node message to value 300 node' do
+            expect(append300).not_to receive(:next_node)
+            linked_list.contains?(300)
+          end
+
           it 'returns true' do
             expect(linked_list.contains?(300)).to eq(true)
           end
         end
 
         context 'when checking if it contains value 400' do
+          it 'sends #value message to value 100 node exactly 1 time' do
+            expect(append100).to receive(:value).exactly(1).time
+            linked_list.contains?(400)
+          end
+
+          it 'sends #next_node message to value 100 node exactly 1 time' do
+            expect(append100).to receive(:next_node).exactly(1).time
+            linked_list.contains?(400)
+          end
+
+          it 'sends #value message to value 200 node exactly 1 time' do
+            expect(append200).to receive(:value).exactly(1).time
+            linked_list.contains?(400)
+          end
+
+          it 'sends #next_node message to value 200 node' do
+            expect(append200).to receive(:next_node).exactly(1).time
+            linked_list.contains?(400)
+          end
+
+          it 'sends #value message to value 300 node exactly 1 time' do
+            expect(append300).to receive(:value).exactly(1).time
+            linked_list.contains?(400)
+          end
+
+          it 'does not send #next_node message to value 300 node' do
+            expect(append300).to receive(:next_node).exactly(1).time
+            linked_list.contains?(400)
+          end
+
           it 'returns false' do
             expect(linked_list.contains?(400)).to eq(false)
           end
