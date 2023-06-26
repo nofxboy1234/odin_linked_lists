@@ -494,14 +494,14 @@ RSpec.describe LinkedList do
         expect { linked_list.pop }.to change { linked_list.size }.by(-1)
       end
 
-      # it 'sets next_node of the new tail node to nil' do
-      #   linked_list.append(100)
-      #   new_tail = linked_list.append(200)
-      #   linked_list.append(300)
+      it 'sets next_node of the new tail node to nil' do
+        linked_list.append(100)
+        new_tail = linked_list.append(200)
+        linked_list.append(300)
 
-      #   linked_list.pop
-      #   expect(new_tail.next_node).to be_nil
-      # end
+        linked_list.pop
+        expect(new_tail.next_node).to be_nil
+      end
 
       it 'sets @tail to the new tail node' do
         linked_list.append(100)
