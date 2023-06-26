@@ -29,33 +29,31 @@ RSpec.describe LinkedList do
 
     context 'when linked_list has 1 existing node with a value of 200' do
       context 'when #append is called with a value of 300' do
+        let(:append200) { linked_list.append(200) }
+
+        before do
+          append200
+        end
+
         it 'increases the size of linked_list from 1 to 2' do
-          linked_list.append(200)
           expect { linked_list.append(300) }.to change { linked_list.size }.from(1).to(2)
         end
 
         it 'does not change @head' do
-          linked_list.append(200)
           expect { linked_list.append(300) }.not_to change { linked_list.head }
         end
 
         it 'sends #next_node message to value 200 node exactly 2 times' do
-          node_instance200 = linked_list.append(200)
-
-          expect(node_instance200).to receive(:next_node).exactly(2).times
+          expect(append200).to receive(:next_node).exactly(2).times
           linked_list.append(300)
         end
 
         it 'sends #next_node= message to value 200 node exactly 1 time' do
-          node_instance200 = linked_list.append(200)
-
-          expect(node_instance200).to receive(:next_node=).exactly(1).time
+          expect(append200).to receive(:next_node=).exactly(1).time
           linked_list.append(300)
         end
 
         it 'sets @tail to a node with the given value of 300' do
-          linked_list.append(200)
-
           linked_list.append(300)
           expect(linked_list.tail.value).to eq(300)
         end
