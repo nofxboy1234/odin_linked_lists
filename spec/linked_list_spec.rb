@@ -42,14 +42,14 @@ RSpec.describe LinkedList do
         it 'sends #next_node message to value 200 node exactly 2 times' do
           node_instance200 = linked_list.append(200)
 
-          expect(node_instance200).to receive(:next_node).exactly(2).times.and_call_original
+          expect(node_instance200).to receive(:next_node).exactly(2).times
           linked_list.append(300)
         end
 
         it 'sends #next_node= message to value 200 node exactly 1 time' do
           node_instance200 = linked_list.append(200)
 
-          expect(node_instance200).to receive(:next_node=).exactly(1).time.and_call_original
+          expect(node_instance200).to receive(:next_node=).exactly(1).time
           linked_list.append(300)
         end
 
@@ -82,7 +82,7 @@ RSpec.describe LinkedList do
           node_instance200 = linked_list.append(200)
           node_instance300 = linked_list.append(300)
 
-          expect(node_instance200).to receive(:next_node).exactly(2).times.and_call_original
+          expect(node_instance200).to receive(:next_node).exactly(2).times
           linked_list.append(400)
         end
 
@@ -90,7 +90,7 @@ RSpec.describe LinkedList do
           node_instance200 = linked_list.append(200)
           node_instance300 = linked_list.append(300)
 
-          expect(node_instance300).to receive(:next_node).exactly(2).times.and_call_original
+          expect(node_instance300).to receive(:next_node).exactly(2).times
           linked_list.append(400)
         end
 
@@ -98,7 +98,7 @@ RSpec.describe LinkedList do
           node_instance200 = linked_list.append(200)
           node_instance300 = linked_list.append(300)
 
-          expect(node_instance300).to receive(:next_node=).exactly(1).time.and_call_original
+          expect(node_instance300).to receive(:next_node=).exactly(1).time
           linked_list.append(400)
         end
 
