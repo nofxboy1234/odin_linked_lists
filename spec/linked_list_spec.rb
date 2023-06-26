@@ -381,42 +381,96 @@ RSpec.describe LinkedList do
       end
 
       context 'when values 100, 200, 300 are in the list' do
-        context 'when the given index is 0' do
-          it 'returns the node with value 100' do
-            appended_node100 = linked_list.append(100)
-            linked_list.append(200)
-            linked_list.append(300)
+        let(:append100) { linked_list.append(100) }
+        let(:append200) { linked_list.append(200) }
+        let(:append300) { linked_list.append(300) }
 
-            expect(linked_list.at(0)).to be(appended_node100)
+        before do
+          append100
+          append200
+          append300
+        end
+
+        context 'when the given index is 0' do
+          it 'does not send #next_node message to value 100 node' do
+            expect(append100).not_to receive(:next_node)
+            linked_list.at(0)
+          end
+
+          it 'does not send #next_node message to value 200 node' do
+            expect(append200).not_to receive(:next_node)
+            linked_list.at(0)
+          end
+
+          it 'does not send #next_node message to value 300 node' do
+            expect(append300).not_to receive(:next_node)
+            linked_list.at(0)
+          end
+
+          it 'returns the node with value 100' do
+            expect(linked_list.at(0)).to be(append100)
           end
         end
 
         context 'when the given index is 1' do
-          it 'returns the node with value 200' do
-            linked_list.append(100)
-            appended_node200 = linked_list.append(200)
-            linked_list.append(300)
+          it 'sends #next_node message to value 100 node exactly 1 time' do
+            expect(append100).to receive(:next_node).exactly(1).time
+            linked_list.at(1)
+          end
 
-            expect(linked_list.at(1)).to be(appended_node200)
+          it 'does not send #next_node message to value 200 node' do
+            expect(append200).not_to receive(:next_node)
+            linked_list.at(1)
+          end
+
+          it 'does not send #next_node message to value 300 node' do
+            expect(append300).not_to receive(:next_node)
+            linked_list.at(1)
+          end
+
+          it 'returns the node with value 200' do
+            expect(linked_list.at(1)).to be(append200)
           end
         end
 
         context 'when the given index is 2' do
-          it 'returns the node with value 300' do
-            linked_list.append(100)
-            linked_list.append(200)
-            appended_node300 = linked_list.append(300)
+          it 'sends #next_node message to value 100 node exactly 1 time' do
+            expect(append100).to receive(:next_node).exactly(1).time
+            linked_list.at(2)
+          end
+          
+          it 'sends #next_node message to value 200 node exactly 1 time' do
+            expect(append200).to receive(:next_node).exactly(1).time
+            linked_list.at(2)
+          end
+          
+          it 'does not send #next_node message to value 300 node' do
+            expect(append300).not_to receive(:next_node)
+            linked_list.at(2)
+          end
 
-            expect(linked_list.at(2)).to be(appended_node300)
+          it 'returns the node with value 300' do
+            expect(linked_list.at(2)).to be(append300)
           end
         end
 
         context 'when the given index 3 is not in the list' do
-          it 'returns nil' do
-            linked_list.append(100)
-            linked_list.append(200)
-            linked_list.append(300)
+          it 'sends #next_node message to value 100 node exactly 1 time' do
+            expect(append100).to receive(:next_node).exactly(1).time
+            linked_list.at(3)
+          end
 
+          it 'sends #next_node message to value 200 node exactly 1 time' do
+            expect(append200).to receive(:next_node).exactly(1).time
+            linked_list.at(3)
+          end
+          
+          it 'sends #next_node message to value 300 node exactly 1 time' do
+            expect(append300).to receive(:next_node).exactly(1).time
+            linked_list.at(3)
+          end
+
+          it 'returns nil' do
             expect(linked_list.at(3)).to be_nil
           end
         end
