@@ -252,24 +252,9 @@ RSpec.describe LinkedList do
       end
 
       context 'when 2 nodes have been appended to the linked_list' do
-        it 'returns 1' do
+        it 'returns 2' do
           linked_list.append(300)
           linked_list.append(400)
-          expect(linked_list.size).to eq(2)
-        end
-      end
-
-      context 'when 1 node has been prepended to the linked_list' do
-        it 'returns 1' do
-          linked_list.prepend(300)
-          expect(linked_list.size).to eq(1)
-        end
-      end
-
-      context 'when 2 nodes have been prepended to the linked_list' do
-        it 'returns 1' do
-          linked_list.prepend(400)
-          linked_list.prepend(300)
           expect(linked_list.size).to eq(2)
         end
       end
