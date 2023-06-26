@@ -16,20 +16,10 @@ class Node
   end
 
   def next_node
-    # binding.pry
-    # if LinkedList.current_head.equal?(self)
-    #   p 'next_node called on head---------------------'
-    # else
-    #   p 'next_node------------------------'
-    # end
-
-    # puts "next_node called on #{value}"
-
     @next_node
   end
 
   def next_node=(node)
-    # puts "next_node= called on #{value}"
     @next_node = node
   end
 end
