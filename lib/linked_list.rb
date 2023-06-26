@@ -24,10 +24,6 @@ class LinkedList
     end
   end
 
-  def sum(a, b)
-    a + b
-  end
-
   def prepend(value)
     increment_size
 
