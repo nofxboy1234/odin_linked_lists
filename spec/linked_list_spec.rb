@@ -494,6 +494,15 @@ RSpec.describe LinkedList do
         expect { linked_list.pop }.to change { linked_list.size }.by(-1)
       end
 
+      it 'sends #value message to @tail exactly 2 times - in #pop and remove#' do
+        linked_list.append(100)
+        linked_list.append(200)
+        linked_list.append(300)
+
+        expect(linked_list.tail).to receive(:value).exactly(2).times
+        linked_list.pop
+      end
+
       it 'sets next_node of the new tail node to nil (removes ref to old tail)' do
         linked_list.append(100)
         new_tail = linked_list.append(200)
