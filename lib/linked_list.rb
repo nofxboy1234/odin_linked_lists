@@ -117,10 +117,10 @@ class LinkedList
   end
 
   def setup_last(value)
-    last_node = last
-    tail_node = create_node(value, nil)
-    last_node.next_node = tail_node
-    @tail = last_node.next_node
+    new_tail_node = create_node(value, nil)
+    
+    tail.next_node = new_tail_node
+    @tail = tail.next_node
   end
 
   private
@@ -171,13 +171,13 @@ class LinkedList
     @size = size - 1
   end
 
-  def last
-    return nil if empty?
+  # def last
+  #   return nil if empty?
 
-    current_node = head
-    current_node = current_node.next_node while current_node.next_node
-    current_node
-  end
+  #   current_node = head
+  #   current_node = current_node.next_node while current_node.next_node
+  #   current_node
+  # end
 
   def nodes_string(values)
     last_index = values.size - 1
