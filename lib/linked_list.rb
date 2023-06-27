@@ -7,8 +7,6 @@ require 'pry-byebug'
 require_relative 'node'
 
 class LinkedList
-  @current_head = nil
-
   # rubocop:disable Style/WhileUntilModifier
   def append(value)
     increment_size
@@ -140,19 +138,9 @@ class LinkedList
     to_s
   end
 
-  def self.update_current_head(head)
-    @current_head = head
-  end
-  # private_class_method :update_current_head
-
-  def self.current_head
-    @current_head
-  end
-
   private
 
   def head=(value)
-    self.class.update_current_head(value)
     @head = value
   end
 
