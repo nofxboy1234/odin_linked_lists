@@ -66,7 +66,8 @@ class LinkedList
   def contains?(value)
     tmp = head
     while tmp
-      return true if tmp.value == value
+      value_found = tmp.value == value
+      return true if value_found
 
       tmp = tmp.next_node
     end
@@ -78,7 +79,8 @@ class LinkedList
     count = 0
     tmp = head
     while tmp
-      return count if tmp.value == value
+      value_found = tmp.value == value
+      return count if value_found
 
       tmp = tmp.next_node
       count += 1
