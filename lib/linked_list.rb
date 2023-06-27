@@ -18,11 +18,11 @@ class LinkedList
       self.head = tail_node
       @tail = head
     else
-      node = head
-      node = node.next_node while node.next_node
+      current_node = head
+      current_node = current_node.next_node while current_node.next_node
 
-      node.next_node = tail_node
-      @tail = node.next_node
+      current_node.next_node = tail_node
+      @tail = current_node.next_node
     end
   end
 
