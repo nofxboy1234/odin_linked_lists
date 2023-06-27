@@ -86,16 +86,18 @@ class LinkedList
   end
 
   def find(value)
-    count = 0
+    return nil if empty?
 
+    count = 0
     tmp = head
-    while tmp.next_node
+    while tmp
+      return count if tmp.value == value
+
       tmp = tmp.next_node
       count += 1
-      return count if tmp.value == value
     end
 
-    nil
+    tmp
   end
 
   def to_s

@@ -741,33 +741,59 @@ RSpec.describe LinkedList do
   end
 
   describe '#find' do
-    before do
-      linked_list.append(100)
-      linked_list.append(200)
-      linked_list.append(300)
-    end
-
-    context 'when the value 100 is in the linked list' do
-      it 'returns the index 1' do
-        expect(linked_list.find(100)).to eq(1)
+    context 'when linked_list is empty' do
+      it 'returns nil for any value' do
+        expect(linked_list.find(22)).to be_nil
       end
     end
 
-    context 'when the value 200 is in the linked list' do
-      it 'returns the index 2' do
-        expect(linked_list.find(200)).to eq(2)
-      end
-    end
+    context 'when linked_list is not empty' do
+      context 'when values 100, 200, 300 are in the linked list' do
+        let(:append100) { linked_list.append(100) }
+        let(:append200) { linked_list.append(200) }
+        let(:append300) { linked_list.append(300) }
+  
+        before do
+          append100
+          append200
+          append300
+        end
+        
+        context 'when the given value is 100' do
+          it 'sends #value message to 100 value node exactly 1 time' do
+            expect(append100).to receive(:value).exactly(1).time
+            linked_list.find(100)
+          end
 
-    context 'when the value 300 is in the linked list' do
-      it 'returns the index 3' do
-        expect(linked_list.find(300)).to eq(3)
-      end
-    end
+          it 'does not send #next_node message to 100 value node' do
+            expect(append100).not_to receive(:next_node)
+            linked_list.find(100)
+          end
 
-    context 'when the value 400 is not in the linked list' do
-      it 'returns nil' do
-        expect(linked_list.find(400)).to eq(nil)
+          it 'does not send #value message to 200 value node' do
+            expect(append200).not_to receive(:value)
+            linked_list.find(100)
+          end
+
+          it 'does not send #next_node message to 200 value node' do
+            expect(append200).not_to receive(:next_node)
+            linked_list.find(100)
+          end
+
+          it 'does not send #value message to 300 value node' do
+            expect(append300).not_to receive(:value)
+            linked_list.find(100)
+          end
+
+          it 'does not send #next_node message to 300 value node' do
+            expect(append300).not_to receive(:next_node)
+            linked_list.find(100)
+          end
+
+          it 'returns the index 0' do
+            expect(linked_list.find(100)).to eq(0)
+          end
+        end
       end
     end
   end
