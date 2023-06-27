@@ -8,22 +8,30 @@ require_relative 'node'
 
 class LinkedList
   # rubocop:disable Style/WhileUntilModifier
+  def last
+    current_node = head
+    while current_node.next_node
+      current_node = current_node.next_node
+    end
+    current_node
+  end
+
+  def setup_last(value)
+    last_node = last
+    tail_node = create_node(value, nil)
+    last_node.next_node = tail_node
+    @tail = last_node.next_node    
+  end
+
   def append(value)
     increment_size
-
     tail_node = create_node(value, nil)
 
     if empty?
       self.head = tail_node
       @tail = head
     else
-      current_node = head
-      while current_node.next_node
-        current_node = current_node.next_node
-      end
-
-      current_node.next_node = tail_node
-      @tail = current_node.next_node
+      setup_last(value)
     end
   end
   # rubocop:enable Style/WhileUntilModifier
