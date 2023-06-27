@@ -118,7 +118,7 @@ class LinkedList
       index = operand[1]
 
       str = if index == values.size - 1
-              memo + "#{op}"
+              memo + op.to_s
             else
               memo + "( #{op} )"
             end
