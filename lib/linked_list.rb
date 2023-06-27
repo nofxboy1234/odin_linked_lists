@@ -119,7 +119,7 @@ class LinkedList
 
   def remove(value)
     # check if linked list is empty
-    raise StandardError, 'Cannot delete. LinkedList is empty!' if head.nil?
+    return nil if empty?
 
     # deleting the head node
     if head.value == value
@@ -135,12 +135,10 @@ class LinkedList
       current_node = current_node.next_node
     end
     # check if node is not in the linked list
-    raise StandardError, 'Cannot delete. Node is not in the list!' if current_node.nil?
+    return nil if current_node.nil?
 
     previous_node.next_node = current_node.next_node
     [previous_node, current_node]
-  rescue StandardError => e
-    puts e
   end
 
   def create_node(value = nil, next_node = nil)
