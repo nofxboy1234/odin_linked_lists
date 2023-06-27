@@ -9,6 +9,7 @@ require_relative 'node'
 class LinkedList
   @current_head = nil
 
+  # rubocop:disable Style/WhileUntilModifier
   def append(value)
     increment_size
 
@@ -19,12 +20,15 @@ class LinkedList
       @tail = head
     else
       current_node = head
-      current_node = current_node.next_node while current_node.next_node
+      while current_node.next_node
+        current_node = current_node.next_node
+      end
 
       current_node.next_node = tail_node
       @tail = current_node.next_node
     end
   end
+  # rubocop:enable Style/WhileUntilModifier
 
   def prepend(value)
     increment_size
