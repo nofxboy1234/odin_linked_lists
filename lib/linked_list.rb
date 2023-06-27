@@ -125,18 +125,20 @@ class LinkedList
     end
 
     values.push('nil')
+    last_index = values.size - 1
 
     values.each_with_index.inject('') do |memo, operand|
       op = operand[0]
       index = operand[1]
+      index_is_last = index == last_index
 
-      str = if index == values.size - 1
+      str = if index_is_last
               memo + op.to_s
             else
               memo + "( #{op} )"
             end
 
-      str += ' -> ' unless index == values.size - 1
+      str += ' -> ' unless index_is_last
 
       str
     end
@@ -166,18 +168,18 @@ class LinkedList
       return
     end
 
-    cur = head
-    prev = nil
+    current_node = head
+    previous_node = nil
 
-    while cur && cur.value != value
-      prev = cur
-      cur = cur.next_node
+    while current_node && current_node.value != value
+      previous_node = current_node
+      current_node = current_node.next_node
     end
     # check if node is not in the linked list
-    raise StandardError, 'Cannot delete. Node is not in the list!' if cur.nil?
+    raise StandardError, 'Cannot delete. Node is not in the list!' if current_node.nil?
 
-    prev.next_node = cur.next_node
-    [prev, cur]
+    previous_node.next_node = current_node.next_node
+    [previous_node, current_node]
   rescue StandardError => e
     puts e
   end
