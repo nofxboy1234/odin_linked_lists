@@ -794,6 +794,78 @@ RSpec.describe LinkedList do
             expect(linked_list.find(100)).to eq(0)
           end
         end
+
+        context 'when the given value is 200' do
+          it 'sends #value message to 100 value node exactly 1 time' do
+            expect(append100).to receive(:value).exactly(1).time
+            linked_list.find(200)
+          end
+  
+          it 'sends #next_node message to 100 value node exactly 1 time' do
+            expect(append100).to receive(:next_node).exactly(1).time
+            linked_list.find(200)
+          end
+  
+          it 'sends #value message to 200 value node exactly 1 time' do
+            expect(append200).to receive(:value).exactly(1).time
+            linked_list.find(200)
+          end
+  
+          it 'does not send #next_node message to 200 value node' do
+            expect(append200).not_to receive(:next_node)
+            linked_list.find(200)
+          end
+  
+          it 'does not send #value message to 300 value node' do
+            expect(append300).not_to receive(:value)
+            linked_list.find(200)
+          end
+  
+          it 'does not send #next_node message to 300 value node' do
+            expect(append300).not_to receive(:next_node)
+            linked_list.find(200)
+          end
+  
+          it 'returns the index 1' do
+            expect(linked_list.find(200)).to eq(1)
+          end
+        end
+
+        context 'when the given value is 300' do
+          it 'sends #value message to 100 value node exactly 1 time' do
+            expect(append100).to receive(:value).exactly(1).time
+            linked_list.find(300)
+          end
+  
+          it 'sends #next_node message to 100 value node exactly 1 time' do
+            expect(append100).to receive(:next_node).exactly(1).time
+            linked_list.find(300)
+          end
+  
+          it 'sends #value message to 200 value node exactly 1 time' do
+            expect(append200).to receive(:value).exactly(1).time
+            linked_list.find(300)
+          end
+  
+          it 'sends #next_node message to 200 value node exactly 1 time' do
+            expect(append200).to receive(:next_node).exactly(1).time
+            linked_list.find(300)
+          end
+  
+          it 'sends #value message to 300 value node exactly 1 time' do
+            expect(append300).to receive(:value).exactly(1).time
+            linked_list.find(300)
+          end
+  
+          it 'does not send #next_node message to 300 value node' do
+            expect(append300).not_to receive(:next_node)
+            linked_list.find(300)
+          end
+  
+          it 'returns the index 2' do
+            expect(linked_list.find(300)).to eq(2)
+          end
+        end
       end
     end
   end
