@@ -44,8 +44,6 @@ class LinkedList
   end
 
   def at(index)
-    return nil if empty?
-
     count = 0
     tmp = head
     while tmp
@@ -69,8 +67,6 @@ class LinkedList
   end
 
   def contains?(value)
-    return false if empty?
-
     tmp = head
     while tmp
       return true if tmp.value == value
@@ -82,8 +78,6 @@ class LinkedList
   end
 
   def find(value)
-    return nil if empty?
-
     count = 0
     tmp = head
     while tmp
