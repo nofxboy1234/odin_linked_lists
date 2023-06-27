@@ -25,6 +25,25 @@ class LinkedList
     @tail = last_node.next_node    
   end
 
+  def nodes_string(values)
+    last_index = values.size - 1
+
+    values.each_with_index.inject('') do |memo, operand|
+      op = operand[0]
+      index = operand[1]
+      index_is_last = index == last_index
+
+      str = if index_is_last
+              memo + op.to_s
+            else
+              memo + "( #{op} )"
+            end
+
+      str += ' -> ' unless index_is_last
+      str
+    end
+  end
+
   def append(value)
     increment_size
     tail_node = create_node(value, nil)
@@ -119,7 +138,6 @@ class LinkedList
     return '' if empty?
 
     values = []
-
     tmp = head
     while tmp
       values.push(tmp.value || 'nil')
@@ -127,23 +145,7 @@ class LinkedList
     end
 
     values.push('nil')
-    last_index = values.size - 1
-
-    values.each_with_index.inject('') do |memo, operand|
-      op = operand[0]
-      index = operand[1]
-      index_is_last = index == last_index
-
-      str = if index_is_last
-              memo + op.to_s
-            else
-              memo + "( #{op} )"
-            end
-
-      str += ' -> ' unless index_is_last
-
-      str
-    end
+    nodes_string(values)
   end
 
   def inspect
@@ -182,8 +184,8 @@ class LinkedList
 
     previous_node.next_node = current_node.next_node
     [previous_node, current_node]
-  rescue StandardError => e
-    puts e
+  rescue StandardError => error
+    puts error
   end
 
   def create_node(value = nil, next_node = nil)
