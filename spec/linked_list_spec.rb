@@ -3,7 +3,7 @@ require './lib/linked_list'
 RSpec.describe LinkedList do
   subject(:linked_list) { described_class.new }
 
-  describe '#append' do
+  describe '#append', append: true do
     context 'when linked_list is empty' do
       context 'when #append is called with a value of 200' do
         it 'increases the size of linked_list from 0 to 1' do
@@ -28,7 +28,7 @@ RSpec.describe LinkedList do
     end
   end
 
-  describe '#prepend' do
+  describe '#prepend', prepend: true do
     context 'when linked_list is empty' do
       context 'when #prepend is called with a value of 200' do
         let(:prepend200) { linked_list.prepend(200) }
@@ -116,7 +116,7 @@ RSpec.describe LinkedList do
     end
   end
 
-  describe '#size' do
+  describe '#size', size: true do
     context 'when linked_list is empty' do
       it 'returns 0' do
         expect(linked_list.size).to eq(0)
@@ -141,7 +141,7 @@ RSpec.describe LinkedList do
     end
   end
 
-  describe '#head' do
+  describe '#head', head: true do
     context 'when linked_list is empty' do
       it 'is nil' do
         expect(linked_list.head).to be_nil
@@ -175,7 +175,7 @@ RSpec.describe LinkedList do
     end
   end
 
-  describe '#tail' do
+  describe '#tail', tail: true do
     context 'when linked_list is empty' do
       it 'is nil' do
         expect(linked_list.tail).to be_nil
@@ -209,7 +209,7 @@ RSpec.describe LinkedList do
     end
   end
 
-  describe '#at' do
+  describe '#at', at: true do
     context 'when linked_list is empty' do
       it 'returns nil' do
         expect(linked_list.at(0)).to be_nil
@@ -358,7 +358,7 @@ RSpec.describe LinkedList do
     end
   end
 
-  describe '#pop' do
+  describe '#pop', pop: true  do
     context 'when linked_list is empty' do
       it 'returns nil' do
         expect(linked_list.pop).to eq(nil)
@@ -411,7 +411,7 @@ RSpec.describe LinkedList do
     end
   end
 
-  describe '#contains?' do
+  describe '#contains?', contains: true do
     context 'when linked_list is empty' do
       it 'returns false for any value' do
         expect(linked_list.contains?(22)).to eq(false)
@@ -620,7 +620,7 @@ RSpec.describe LinkedList do
     end
   end
 
-  describe '#find' do
+  describe '#find', find: true do
     context 'when linked_list is empty' do
       it 'returns nil for any value' do
         expect(linked_list.find(22)).to be_nil
@@ -914,7 +914,7 @@ RSpec.describe LinkedList do
     end
   end
 
-  describe '#to_s' do
+  describe '#to_s', to_s: true do
     context 'when the list is empty' do
       it 'returns an empty string' do
         expect(linked_list.to_s).to eq('')
@@ -1032,5 +1032,41 @@ RSpec.describe LinkedList do
         expect { puts linked_list }.to output("#{output}\n").to_stdout
       end
     end
+  end
+
+  describe '#remove', remove: true do
+    context 'when the linked list is empty' do
+      it 'returns nil' do
+        expect(linked_list.remove(100)).to eq(nil)
+      end
+    end
+
+    context 'when the value to remove is the head node' do
+      let(:append100) { linked_list.append(100) }
+
+      before do
+        append100
+      end
+
+      it 'sends #next_node message to @head exactly 1 time' do
+        expect(linked_list.head).to receive(:next_node).exactly(1).time
+        linked_list.remove(100)
+      end
+
+      it 'changes the the value of @head to nil' do
+        expect { linked_list.remove(100) }.to change { linked_list.head }
+          .from(append100).to(nil)
+      end
+
+      it 'returns nil' do
+        expect(linked_list.remove(100)).to eq(nil)
+      end
+
+      it 'does not send #find_with_previous message to linked_list' do
+        expect(linked_list).not_to receive(:find_with_previous)
+        linked_list.remove(100)
+      end
+    end
+    context 'when value is not found'
   end
 end

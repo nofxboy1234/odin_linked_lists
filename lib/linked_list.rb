@@ -108,14 +108,9 @@ class LinkedList
     to_s
   end
 
-  private
-
-  def head=(value)
-    @head = value
-  end
-
-  def empty?
-    head.nil?
+  def remove_at(index)
+    node = at(index)
+    remove(node.value)
   end
 
   def remove(value)
@@ -124,7 +119,7 @@ class LinkedList
     # deleting the head node
     if head.value == value
       self.head = head.next_node
-      return
+      return nil
     end
 
     previous_node, current_node = find_with_previous(value)
@@ -133,6 +128,16 @@ class LinkedList
 
     previous_node.next_node = current_node.next_node
     [previous_node, current_node]
+  end
+
+  private
+
+  def head=(value)
+    @head = value
+  end
+
+  def empty?
+    head.nil?
   end
 
   def create_node(value = nil, next_node = nil)
