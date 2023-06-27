@@ -8,42 +8,6 @@ require_relative 'node'
 
 class LinkedList
   # rubocop:disable Style/WhileUntilModifier
-  def last
-    return nil if empty?
-
-    current_node = head
-    while current_node.next_node
-      current_node = current_node.next_node
-    end
-    current_node
-  end
-
-  def setup_last(value)
-    last_node = last
-    tail_node = create_node(value, nil)
-    last_node.next_node = tail_node
-    @tail = last_node.next_node    
-  end
-
-  def nodes_string(values)
-    last_index = values.size - 1
-
-    values.each_with_index.inject('') do |memo, operand|
-      op = operand[0]
-      index = operand[1]
-      index_is_last = index == last_index
-
-      str = if index_is_last
-              memo + op.to_s
-            else
-              memo + "( #{op} )"
-            end
-
-      str += ' -> ' unless index_is_last
-      str
-    end
-  end
-
   def append(value)
     increment_size
     tail_node = create_node(value, nil)
@@ -152,6 +116,13 @@ class LinkedList
     to_s
   end
 
+  def setup_last(value)
+    last_node = last
+    tail_node = create_node(value, nil)
+    last_node.next_node = tail_node
+    @tail = last_node.next_node
+  end
+
   private
 
   def head=(value)
@@ -184,8 +155,8 @@ class LinkedList
 
     previous_node.next_node = current_node.next_node
     [previous_node, current_node]
-  rescue StandardError => error
-    puts error
+  rescue StandardError => e
+    puts e
   end
 
   def create_node(value = nil, next_node = nil)
@@ -198,6 +169,33 @@ class LinkedList
 
   def decrement_size
     @size = size - 1
+  end
+
+  def last
+    return nil if empty?
+
+    current_node = head
+    current_node = current_node.next_node while current_node.next_node
+    current_node
+  end
+
+  def nodes_string(values)
+    last_index = values.size - 1
+
+    values.each_with_index.inject('') do |memo, operand|
+      op = operand[0]
+      index = operand[1]
+      index_is_last = index == last_index
+
+      str = if index_is_last
+              memo + op.to_s
+            else
+              memo + "( #{op} )"
+            end
+
+      str += ' -> ' unless index_is_last
+      str
+    end
   end
 end
 # rubocop:enable Style/TrivialAccessors
