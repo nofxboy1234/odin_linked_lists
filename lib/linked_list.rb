@@ -106,10 +106,10 @@ class LinkedList
     tmp = head
     while tmp
       values.push(tmp.value || 'nil')
-
       tmp = tmp.next_node
-      values.push('nil') if tmp.nil?
     end
+
+    values.push('nil')
 
     values.each_with_index.inject('') do |memo, operand|
       op = operand[0]
