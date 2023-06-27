@@ -123,7 +123,6 @@ class LinkedList
     end
 
     previous_node, current_node = find_with_previous(value)
-
     return nil unless current_node
 
     previous_node.next_node = current_node.next_node
