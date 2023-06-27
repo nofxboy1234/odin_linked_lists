@@ -9,6 +9,8 @@ require_relative 'node'
 class LinkedList
   # rubocop:disable Style/WhileUntilModifier
   def last
+    return nil if empty?
+
     current_node = head
     while current_node.next_node
       current_node = current_node.next_node
@@ -53,11 +55,11 @@ class LinkedList
   end
 
   def head
-    @head
+    @head ||= nil
   end
 
   def tail
-    @tail
+    @tail ||= nil
   end
 
   def at(index)
