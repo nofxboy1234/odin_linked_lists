@@ -7,7 +7,6 @@ require 'pry-byebug'
 require_relative 'node'
 
 class LinkedList
-  # rubocop:disable Style/WhileUntilModifier
   def append(value)
     increment_size
     tail_node = create_node(value, nil)
@@ -19,7 +18,6 @@ class LinkedList
       setup_last(value)
     end
   end
-  # rubocop:enable Style/WhileUntilModifier
 
   def prepend(value)
     increment_size
@@ -116,13 +114,6 @@ class LinkedList
     to_s
   end
 
-  def setup_last(value)
-    new_tail_node = create_node(value, nil)
-    
-    tail.next_node = new_tail_node
-    @tail = tail.next_node
-  end
-
   private
 
   def head=(value)
@@ -164,20 +155,12 @@ class LinkedList
   end
 
   def increment_size
-    @size = size + 1 # instead of traversing and counting...
+    @size = size + 1
   end
 
   def decrement_size
     @size = size - 1
   end
-
-  # def last
-  #   return nil if empty?
-
-  #   current_node = head
-  #   current_node = current_node.next_node while current_node.next_node
-  #   current_node
-  # end
 
   def nodes_string(values)
     last_index = values.size - 1
@@ -196,6 +179,13 @@ class LinkedList
       str += ' -> ' unless index_is_last
       str
     end
+  end
+
+  def setup_last(value)
+    new_tail_node = create_node(value, nil)
+
+    tail.next_node = new_tail_node
+    @tail = tail.next_node
   end
 end
 # rubocop:enable Style/TrivialAccessors
