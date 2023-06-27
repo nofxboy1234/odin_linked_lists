@@ -118,7 +118,6 @@ class LinkedList
   end
 
   def remove(value)
-    # check if linked list is empty
     return nil if empty?
 
     # deleting the head node
@@ -127,15 +126,9 @@ class LinkedList
       return
     end
 
-    current_node = head
-    previous_node = nil
+    previous_node, current_node = find_with_previous(value)
 
-    while current_node && current_node.value != value
-      previous_node = current_node
-      current_node = current_node.next_node
-    end
-    # check if node is not in the linked list
-    return nil if current_node.nil?
+    return nil unless current_node
 
     previous_node.next_node = current_node.next_node
     [previous_node, current_node]
@@ -177,6 +170,23 @@ class LinkedList
 
     tail.next_node = new_tail_node
     @tail = tail.next_node
+  end
+
+  def find_with_previous(value)
+    count = 0
+    previous_node = nil
+    current_node = head
+    
+    while current_node
+      value_found = current_node.value == value
+      return [previous_node, current_node] if value_found
+
+      previous_node = current_node
+      current_node = current_node.next_node
+      count += 1
+    end
+
+    [previous_node, current_node]
   end
 end
 # rubocop:enable Style/TrivialAccessors
