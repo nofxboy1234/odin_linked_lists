@@ -12,14 +12,16 @@ class LinkedList
   def append(value)
     increment_size
 
+    tail_node = create_node(value, nil)
+
     if empty?
-      self.head = create_node(value, nil)
+      self.head = tail_node
       @tail = head
     else
       tmp = head
       tmp = tmp.next_node while tmp.next_node
 
-      tmp.next_node = create_node(value, nil)
+      tmp.next_node = tail_node
       @tail = tmp.next_node
     end
   end
@@ -28,7 +30,8 @@ class LinkedList
     increment_size
 
     if empty?
-      self.head = create_node(value, nil)
+      tail_node = create_node(value, nil)
+      self.head = tail_node
       @tail = head
     else
       self.head = create_node(value, head)
