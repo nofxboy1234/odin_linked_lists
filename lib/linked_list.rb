@@ -119,7 +119,7 @@ class LinkedList
     # deleting the head node
     if head.value == value
       self.head = head.next_node
-      return nil
+      return self.head
     end
 
     previous_node, current_node = find_with_previous(value)
