@@ -5,6 +5,7 @@
 
 require 'pry-byebug'
 
+# Node represents values as Nodes
 class Node
   def initialize(value = nil, next_node = nil)
     @value = value
