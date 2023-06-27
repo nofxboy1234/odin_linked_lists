@@ -46,9 +46,7 @@ class LinkedList
   def at(index)
     count = 0
     tmp = head
-    while tmp
-      break if count == index
-
+    while tmp && count != index
       tmp = tmp.next_node
       count += 1
     end
@@ -60,7 +58,6 @@ class LinkedList
     return nil if empty?
 
     decrement_size
-
     prev, cur = remove(tail.value)
     @tail = prev
     cur
