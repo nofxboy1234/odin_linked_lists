@@ -1035,6 +1035,75 @@ RSpec.describe LinkedList do
   end
 
   describe '#to_s' do
+    context 'when the list is empty' do
+      it 'returns an empty string' do
+        expect(linked_list.to_s).to eq('')
+        expect { puts linked_list }.to output("\n").to_stdout
+      end
+    end
+
+    context 'when the list has 100 in it' do
+      let(:append100) { linked_list.append(100) }
+
+      before do
+        append100
+      end
+
+      it 'sends #value message to node value 100 exactly 1 time' do
+        expect(append100).to receive(:value).exactly(1).time
+        linked_list.to_s
+      end
+
+      it 'sends #next_node message to node value 100 exactly 1 time' do
+        expect(append100).to receive(:next_node).exactly(1).time
+        linked_list.to_s
+      end
+
+      it 'returns "( 100 ) -> nil"' do
+        output = '( 100 ) -> nil'
+
+        expect(linked_list.to_s).to eq(output)
+        expect { puts linked_list }.to output("#{output}\n").to_stdout
+      end
+    end
+
+    context 'when the list has 100, 200 in it' do
+      let(:append100) { linked_list.append(100) }
+      let(:append200) { linked_list.append(200) }
+
+      before do
+        append100
+        append200
+      end
+
+      it 'sends #value message to node value 100 exactly 1 time' do
+        expect(append100).to receive(:value).exactly(1).time
+        linked_list.to_s
+      end
+
+      it 'sends #next_node message to node value 100 exactly 1 time' do
+        expect(append100).to receive(:next_node).exactly(1).time
+        linked_list.to_s
+      end
+
+      it 'sends #value message to node value 200 exactly 1 time' do
+        expect(append200).to receive(:value).exactly(1).time
+        linked_list.to_s
+      end
+
+      it 'sends #next_node message to node value 200 exactly 1 time' do
+        expect(append200).to receive(:next_node).exactly(1).time
+        linked_list.to_s
+      end
+
+      it 'returns "( 100 ) -> ( 200 ) -> nil"' do
+        output = '( 100 ) -> ( 200 ) -> nil'
+
+        expect(linked_list.to_s).to eq(output)
+        expect { puts linked_list }.to output("#{output}\n").to_stdout
+      end
+    end
+
     context 'when the list has 100, 200, 300 in it' do
       let(:append100) { linked_list.append(100) }
       let(:append200) { linked_list.append(200) }

@@ -101,6 +101,8 @@ class LinkedList
   end
 
   def to_s
+    return '' if empty?
+
     values = []
 
     tmp = head
