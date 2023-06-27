@@ -6,6 +6,7 @@
 require 'pry-byebug'
 require_relative 'node'
 
+# LinkedList manages values stored in Nodes
 class LinkedList
   def append(value)
     increment_size
