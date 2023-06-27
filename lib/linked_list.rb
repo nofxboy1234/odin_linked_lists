@@ -45,31 +45,31 @@ class LinkedList
 
   def at(index)
     count = 0
-    tmp = head
-    while tmp && count != index
-      tmp = tmp.next_node
+    current_node = head
+    while current_node && count != index
+      current_node = current_node.next_node
       count += 1
     end
 
-    tmp
+    current_node
   end
 
   def pop
     return nil if empty?
 
     decrement_size
-    prev, cur = remove(tail.value)
-    @tail = prev
-    cur
+    previous_node, current_node = remove(tail.value)
+    @tail = previous_node
+    current_node
   end
 
   def contains?(value)
-    tmp = head
-    while tmp
-      value_found = tmp.value == value
+    current_node = head
+    while current_node
+      value_found = current_node.value == value
       return true if value_found
 
-      tmp = tmp.next_node
+      current_node = current_node.next_node
     end
 
     false
@@ -77,26 +77,26 @@ class LinkedList
 
   def find(value)
     count = 0
-    tmp = head
-    while tmp
-      value_found = tmp.value == value
+    current_node = head
+    while current_node
+      value_found = current_node.value == value
       return count if value_found
 
-      tmp = tmp.next_node
+      current_node = current_node.next_node
       count += 1
     end
 
-    tmp
+    current_node
   end
 
   def to_s
     return '' if empty?
 
     values = []
-    tmp = head
-    while tmp
-      values.push(tmp.value || 'nil')
-      tmp = tmp.next_node
+    current_node = head
+    while current_node
+      values.push(current_node.value || 'nil')
+      current_node = current_node.next_node
     end
 
     values.push('nil')
