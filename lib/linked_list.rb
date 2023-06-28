@@ -11,7 +11,7 @@ class LinkedList
   def append(value)
     increment_size
     tail_node = create_node(value, nil)
-    
+
     if empty?
       self.head = tail_node
       @tail = head
@@ -111,7 +111,7 @@ class LinkedList
 
   def remove(value)
     return nil if empty?
-    
+
     # deleting the head node
     if head.value == value
       old_head = head
@@ -128,9 +128,9 @@ class LinkedList
 
   def insert_at(value, index)
     if empty?
-      append(create_node(value)) 
-    else
-      puts '------------------not empty'
+      append(create_node(value))
+    elsif index >= size
+      append(create_node(value))
     end
   end
 

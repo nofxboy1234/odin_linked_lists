@@ -1220,6 +1220,7 @@ RSpec.describe LinkedList do
       
       context 'when linked list is not empty' do
         let(:append100) { linked_list.append(100) }
+        let(:append200) { linked_list.append(200) }
 
         before do
           append100
@@ -1232,8 +1233,8 @@ RSpec.describe LinkedList do
           end
   
           it 'appends a node with the given value' do
-            linked_list.insert_at(100, 99)
-            expect(linked_list.tail).to be(insert_at_100_99)
+            append200
+            expect(linked_list.tail).to be(append200)
           end
         end
 
