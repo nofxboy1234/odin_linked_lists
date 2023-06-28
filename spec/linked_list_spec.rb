@@ -1093,15 +1093,15 @@ RSpec.describe LinkedList do
     end
 
     context 'when the values 100, 200 are in the list' do
+      let(:append100) { linked_list.append(100) }
+      let(:append200) { linked_list.append(200) }
+
+      before do
+        append100
+        append200
+      end
+
       context 'when the value to remove is value 100 node (head)' do
-        let(:append100) { linked_list.append(100) }
-        let(:append200) { linked_list.append(200) }
-
-        before do
-          append100
-          append200
-        end
-
         it 'sends #value message to @head exactly 1 time' do
           expect(linked_list.head).to receive(:value).and_call_original.exactly(1).time
           linked_list.remove(100)
@@ -1128,14 +1128,6 @@ RSpec.describe LinkedList do
       end
 
       context 'when the value to remove is 200' do
-        let(:append100) { linked_list.append(100) }
-        let(:append200) { linked_list.append(200) }
-
-        before do
-          append100
-          append200
-        end
-        
         it 'sends #value message to @head exactly 2 times' do
           expect(linked_list.head).to receive(:value).and_call_original.exactly(2).times
           linked_list.remove(200)
@@ -1162,14 +1154,6 @@ RSpec.describe LinkedList do
       end
 
       context 'when the value to remove is 400' do
-        let(:append100) { linked_list.append(100) }
-        let(:append200) { linked_list.append(200) }
-
-        before do
-          append100
-          append200
-        end
-
         it 'sends #value message to @head exactly 2 times' do
           expect(linked_list.head).to receive(:value).and_call_original.exactly(2).times
           linked_list.remove(400)
