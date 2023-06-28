@@ -104,10 +104,6 @@ class LinkedList
     nodes_string(values)
   end
 
-  # def inspect
-  #   to_s
-  # end
-
   def remove_at(index)
     node = at(index)
     remove(node.value)
@@ -128,6 +124,10 @@ class LinkedList
 
     previous_node.next_node = current_node.next_node
     [previous_node, current_node]
+  end
+
+  def insert_at(value, index)
+    increment_size
   end
 
   private

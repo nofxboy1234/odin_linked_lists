@@ -1090,6 +1090,8 @@ RSpec.describe LinkedList do
         append100
       end
 
+      it 'decreases the size of linked list by 1'
+
       context 'when the value to remove is value 100 node (head)' do
         it 'sends #value message to @head exactly 1 time' do
           expect(linked_list.head).to receive(:value).and_call_original.exactly(1).time
@@ -1168,7 +1170,7 @@ RSpec.describe LinkedList do
           expect(linked_list.head).to receive(:value).and_call_original.exactly(2).times
           linked_list.remove(200)
         end
-        
+
         it 'sends #next_node message to value 200 node exactly 1 time' do
           expect(append200).to receive(:next_node).exactly(1).time
           linked_list.remove(200)
@@ -1194,11 +1196,31 @@ RSpec.describe LinkedList do
           expect(linked_list.head).to receive(:value).and_call_original.exactly(2).times
           linked_list.remove(400)
         end
-        
+
         it 'returns nil' do
           expect(linked_list.remove(400)).to eq(nil)
         end
       end
+    end
+  end
+
+  describe '#insert_at', insert_at: true do
+    describe 'inserts a new node with the provided value at the given index' do
+      # if linked list is empty
+      context 'when linked list is empty' do
+        # append node with value
+        it 'increases size of linked list by 1' do
+          expect { linked_list.insert_at(100, 99) }
+            .to change { linked_list.size }.from(0).to(1)
+        end
+      end
+      # if index >= linked list size
+      # append node with value
+      # if linked list is not empty
+      # loop through the linked list until given index - 1 is reached
+      # create the new node with given value
+      # set next_node of current_node to the new node
+      # set next_node of the new node to current_node.next_node
     end
   end
 end
