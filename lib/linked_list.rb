@@ -128,11 +128,29 @@ class LinkedList
 
   def insert_at(value, index)
     if empty?
+      puts '---------------empty'
       append(create_node(value))
     elsif index >= size
+      puts '---------------index >= size'
       append(create_node(value))
+    elsif index.zero?
+      puts '---------------index == 0'
+      prepend(value)
     else
+      puts '---------------index > 0 and index < linked list size'
       increment_size
+
+      current_node = head
+      count = 0
+      while current_node
+        if count == index - 1
+          new_node = create_node(value, current_node.next_node)
+          return current_node.next_node = new_node
+        end
+
+        current_node = current_node.next_node
+        count += 1
+      end
     end
   end
 
