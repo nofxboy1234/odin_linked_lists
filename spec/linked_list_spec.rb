@@ -1044,25 +1044,30 @@ RSpec.describe LinkedList do
     context 'when the value 100 is in the list' do
       context 'when the value to remove is the head node' do
         let(:append100) { linked_list.append(100) }
-  
+
         before do
           append100
         end
-  
+        
+        it 'sends #value message to @head exactly 1 time' do
+          expect(linked_list.head).to receive(:value).and_call_original.exactly(1).time
+          linked_list.remove(100)
+        end
+
         it 'sends #next_node message to @head exactly 1 time' do
           expect(linked_list.head).to receive(:next_node).exactly(1).time
           linked_list.remove(100)
         end
-  
+
         it 'changes the the value of @head to nil' do
           expect { linked_list.remove(100) }.to change { linked_list.head }
             .from(append100).to(nil)
         end
-  
+
         it 'returns nil' do
           expect(linked_list.remove(100)).to eq(nil)
         end
-  
+
         it 'does not send #find_with_previous message to linked_list' do
           expect(linked_list).not_to receive(:find_with_previous)
           linked_list.remove(100)

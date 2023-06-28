@@ -11,7 +11,7 @@ class LinkedList
   def append(value)
     increment_size
     tail_node = create_node(value, nil)
-
+    
     if empty?
       self.head = tail_node
       @tail = head
@@ -104,9 +104,9 @@ class LinkedList
     nodes_string(values)
   end
 
-  def inspect
-    to_s
-  end
+  # def inspect
+  #   to_s
+  # end
 
   def remove_at(index)
     node = at(index)
@@ -119,9 +119,8 @@ class LinkedList
     # deleting the head node
     if head.value == value
       self.head = head.next_node
-      return self.head
+      return head
     end
-
     previous_node, current_node = find_with_previous(value)
     return nil unless current_node
 
@@ -181,7 +180,7 @@ class LinkedList
     count = 0
     previous_node = nil
     current_node = head
-    
+
     while current_node
       value_found = current_node.value == value
       return [previous_node, current_node] if value_found
