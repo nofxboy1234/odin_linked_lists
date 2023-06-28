@@ -150,26 +150,44 @@ RSpec.describe LinkedList do
 
     context 'when linked_list is not empty' do
       context 'when value 100 is in the list' do
+        let(:append100) { linked_list.append(100) }
+
+        before do
+          append100
+        end
+
         it 'returns the node with value 100' do
-          first_node = linked_list.append(100)
-          expect(linked_list.head).to be(first_node)
+          expect(linked_list.head).to be(append100)
         end
       end
 
       context 'when values 100, 200 are in the list' do
+        let(:append100) { linked_list.append(100) }
+        let(:append200) { linked_list.append(200) }
+
+        before do
+          append100
+          append200
+        end
+
         it 'returns the node with value 100' do
-          first_node = linked_list.append(100)
-          linked_list.append(200)
-          expect(linked_list.head).to be(first_node)
+          expect(linked_list.head).to be(append100)
         end
       end
 
       context 'when values 100, 200, 300 are in the list' do
+        let(:append100) { linked_list.append(100) }
+        let(:append200) { linked_list.append(200) }
+        let(:append300) { linked_list.append(300) }
+
+        before do
+          append100
+          append200
+          append300
+        end
+
         it 'returns the node with value 100' do
-          first_node = linked_list.append(100)
-          linked_list.append(200)
-          linked_list.append(300)
-          expect(linked_list.head).to be(first_node)
+          expect(linked_list.head).to be(append100)
         end
       end
     end
@@ -184,26 +202,44 @@ RSpec.describe LinkedList do
 
     context 'when linked_list is not empty' do
       context 'when value 300 is in the list' do
+        let(:append300) { linked_list.append(300) }
+
+        before do
+          append300
+        end
+
         it 'returns the node with value 300' do
-          last_node = linked_list.append(300)
-          expect(linked_list.tail).to be(last_node)
+          expect(linked_list.tail).to be(append300)
         end
       end
 
       context 'when values 200, 300 are in the list' do
+        let(:append200) { linked_list.append(200) }
+        let(:append300) { linked_list.append(300) }
+
+        before do
+          append200
+          append300
+        end
+
         it 'returns the node with value 300' do
-          linked_list.append(200)
-          last_node = linked_list.append(300)
-          expect(linked_list.tail).to be(last_node)
+          expect(linked_list.tail).to be(append300)
         end
       end
 
       context 'when values 100, 200, 300 are in the list' do
+        let(:append100) { linked_list.append(100) }
+        let(:append200) { linked_list.append(200) }
+        let(:append300) { linked_list.append(300) }
+
+        before do
+          append100
+          append200
+          append300
+        end
+
         it 'returns the node with value 300' do
-          linked_list.append(100)
-          linked_list.append(200)
-          last_node = linked_list.append(300)
-          expect(linked_list.tail).to be(last_node)
+          expect(linked_list.tail).to be(append300)
         end
       end
     end
