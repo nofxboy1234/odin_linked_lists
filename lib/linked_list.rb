@@ -127,7 +127,11 @@ class LinkedList
   end
 
   def insert_at(value, index)
-    append(create_node(value)) if empty?
+    if empty?
+      append(create_node(value)) 
+    else
+      puts 'not empty'
+    end
   end
 
   private
