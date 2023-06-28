@@ -125,16 +125,27 @@ RSpec.describe LinkedList do
 
     context 'when linked_list is not empty' do
       context 'when 1 node has been appended to the linked_list' do
+        let(:append100) { linked_list.append(100) }
+
+        before do
+          append100
+        end
+
         it 'returns 1' do
-          linked_list.append(300)
           expect(linked_list.size).to eq(1)
         end
       end
 
       context 'when 2 nodes have been appended to the linked_list' do
+        let(:append100) { linked_list.append(100) }
+        let(:append200) { linked_list.append(200) }
+
+        before do
+          append100
+          append200
+        end
+
         it 'returns 2' do
-          linked_list.append(300)
-          linked_list.append(400)
           expect(linked_list.size).to eq(2)
         end
       end
