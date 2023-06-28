@@ -1206,28 +1206,43 @@ RSpec.describe LinkedList do
 
   describe '#insert_at', insert_at: true do
     describe 'inserts a new node with the provided value at the given index' do
-      # if linked list is empty
       context 'when linked list is empty' do
         it 'increases size of linked list by 1' do
           expect { linked_list.insert_at(100, 99) }
           .to change { linked_list.size }.from(0).to(1)
         end
 
-        # append node with value
         it 'appends a node with the given value' do
           insert_at_100_99 = linked_list.insert_at(100, 99)
           expect(linked_list.head).to be(insert_at_100_99)
         end
       end
-      # if index >= linked list size
-      # increment size
-      # append node with value
-      # if linked list is not empty
-      # increment size
-      # loop through the linked list until given index - 1 is reached
-      # create the new node with given value
-      # set next_node of current_node to the new node
-      # set next_node of the new node to current_node.next_node
+      
+      context 'when linked list is not empty' do
+        let(:append100) { linked_list.append(100) }
+
+        before do
+          append100
+        end
+
+        context 'when index >= linked list size' do
+          it 'increases size of linked list by 1' do
+            expect { linked_list.insert_at(100, 99) }
+            .to change { linked_list.size }.from(1).to(2)
+          end
+  
+          it 'appends a node with the given value' do
+            linked_list.insert_at(100, 99)
+            expect(linked_list.tail).to be(insert_at_100_99)
+          end
+        end
+
+        # increment size
+        # loop through the linked list until given index - 1 is reached
+        # create the new node with given value
+        # set next_node of current_node to the new node
+        # set next_node of the new node to current_node.next_node
+      end
     end
   end
 end

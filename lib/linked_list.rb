@@ -130,7 +130,7 @@ class LinkedList
     if empty?
       append(create_node(value)) 
     else
-      puts 'not empty'
+      puts '------------------not empty'
     end
   end
 
