@@ -1238,11 +1238,18 @@ RSpec.describe LinkedList do
           end
         end
 
-        # increment size
-        # loop through the linked list until given index - 1 is reached
-        # create the new node with given value
-        # set next_node of current_node to the new node
-        # set next_node of the new node to current_node.next_node
+        context 'when index < linked list size' do
+          # increment size
+          it 'increases size of linked list by 1' do
+            expect { linked_list.insert_at(100, 0) }
+            .to change { linked_list.size }.from(1).to(2)
+          end
+
+          # loop through the linked list until given index - 1 is reached
+          # create the new node with given value
+          # set next_node of current_node to the new node
+          # set next_node of the new node to current_node.next_node
+        end
       end
     end
   end

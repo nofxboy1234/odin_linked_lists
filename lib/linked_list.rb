@@ -131,6 +131,8 @@ class LinkedList
       append(create_node(value))
     elsif index >= size
       append(create_node(value))
+    else
+      increment_size
     end
   end
 
