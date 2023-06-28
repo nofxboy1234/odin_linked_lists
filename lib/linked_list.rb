@@ -58,7 +58,6 @@ class LinkedList
   def pop
     return nil if empty?
 
-    decrement_size
     previous_node, current_node = remove(tail.value)
     @tail = previous_node
     current_node
@@ -114,6 +113,7 @@ class LinkedList
 
     # deleting the head node
     if head.value == value
+      decrement_size
       old_head = head
       self.head = head.next_node
       return old_head
@@ -122,22 +122,19 @@ class LinkedList
     previous_node, current_node = find_with_previous(value)
     return nil unless current_node
 
+    decrement_size
     previous_node.next_node = current_node.next_node
     [previous_node, current_node]
   end
 
   def insert_at(value, index)
     if empty?
-      puts '---------------empty'
       append(create_node(value))
     elsif index >= size
-      puts '---------------index >= size'
       append(create_node(value))
     elsif index.zero?
-      puts '---------------index == 0'
       prepend(value)
     else
-      puts '---------------index > 0 and index < linked list size'
       increment_size
 
       current_node = head

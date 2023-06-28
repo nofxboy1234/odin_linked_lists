@@ -1090,8 +1090,6 @@ RSpec.describe LinkedList do
         append100
       end
 
-      it 'decreases the size of linked list by 1'
-
       context 'when the value to remove is value 100 node (head)' do
         it 'sends #value message to @head exactly 1 time' do
           expect(linked_list.head).to receive(:value).and_call_original.exactly(1).time
@@ -1115,6 +1113,11 @@ RSpec.describe LinkedList do
         it 'does not send #find_with_previous message to linked_list' do
           expect(linked_list).not_to receive(:find_with_previous)
           linked_list.remove(100)
+        end
+
+        it 'decreases the size of linked list by 1' do
+          expect { linked_list.remove(100) }.to change { linked_list.size }
+            .from(1).to(0)
         end
       end
 
@@ -1163,6 +1166,11 @@ RSpec.describe LinkedList do
           expect(linked_list).not_to receive(:find_with_previous)
           linked_list.remove(100)
         end
+
+        it 'decreases the size of linked list by 1' do
+          expect { linked_list.remove(100) }.to change { linked_list.size }
+            .from(2).to(1)
+        end
       end
 
       context 'when the value to remove is 200' do
@@ -1189,6 +1197,11 @@ RSpec.describe LinkedList do
         it 'returns [value_100_node, value_200_node]' do
           expect(linked_list.remove(200)).to eq([append100, append200])
         end
+
+        it 'decreases the size of linked list by 1' do
+          expect { linked_list.remove(200) }.to change { linked_list.size }
+            .from(2).to(1)
+        end
       end
 
       context 'when the value to remove is 400' do
@@ -1211,7 +1224,7 @@ RSpec.describe LinkedList do
 
         it 'increases size of linked list by 1' do
           expect { insert_at_99 }
-          .to change { linked_list.size }.from(0).to(1)
+            .to change { linked_list.size }.from(0).to(1)
         end
 
         it 'has inserted node at index 0' do
@@ -1219,7 +1232,7 @@ RSpec.describe LinkedList do
           expect(linked_list.at(0)).to be(insert_at_99)
         end
       end
-      
+
       context 'when linked list has values 100, 200' do
         let(:append100) { linked_list.append(100) }
         let(:append200) { linked_list.append(200) }
@@ -1235,9 +1248,9 @@ RSpec.describe LinkedList do
         context 'when index >= linked list size' do
           it 'increases size of linked list by 1' do
             expect { insert_at_99 }
-            .to change { linked_list.size }.from(2).to(3)
+              .to change { linked_list.size }.from(2).to(3)
           end
-  
+
           it 'has inserted node as the tail' do
             insert_at_99
             expect(linked_list.tail).to be(insert_at_99)
@@ -1247,7 +1260,7 @@ RSpec.describe LinkedList do
         context 'when index is zero' do
           it 'increases size of linked list by 1' do
             expect { insert_at_0 }
-            .to change { linked_list.size }.from(2).to(3)
+              .to change { linked_list.size }.from(2).to(3)
           end
 
           it 'has inserted node at index 0' do
@@ -1259,7 +1272,7 @@ RSpec.describe LinkedList do
         context 'when index > 0 and index < linked list size' do
           it 'increases size of linked list by 1' do
             expect { insert_at_1 }
-            .to change { linked_list.size }.from(2).to(3)
+              .to change { linked_list.size }.from(2).to(3)
           end
 
           it 'has inserted node at index 1' do
