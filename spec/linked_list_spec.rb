@@ -1136,7 +1136,7 @@ RSpec.describe LinkedList do
           append200
         end
         
-        it 'sends #value message to @head exactly 1 time' do
+        it 'sends #value message to @head exactly 2 times' do
           expect(linked_list.head).to receive(:value).and_call_original.exactly(2).times
           linked_list.remove(200)
         end
