@@ -118,8 +118,9 @@ class LinkedList
     
     # deleting the head node
     if head.value == value
+      old_head = head
       self.head = head.next_node
-      return head
+      return old_head
     end
 
     previous_node, current_node = find_with_previous(value)

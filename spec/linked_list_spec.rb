@@ -1042,7 +1042,7 @@ RSpec.describe LinkedList do
     end
 
     context 'when the value 100 is in the list' do
-      context 'when the value to remove is the head node' do
+      context 'when the value to remove is value 100 node (head)' do
         let(:append100) { linked_list.append(100) }
 
         before do
@@ -1054,8 +1054,8 @@ RSpec.describe LinkedList do
           linked_list.remove(100)
         end
 
-        it 'sends #next_node message to @head exactly 1 time' do
-          expect(linked_list.head).to receive(:next_node).exactly(1).time
+        it 'sends #next_node message to value 100 node exactly 1 time' do
+          expect(append100).to receive(:next_node).exactly(1).time
           linked_list.remove(100)
         end
 
@@ -1064,8 +1064,8 @@ RSpec.describe LinkedList do
             .from(append100).to(nil)
         end
 
-        it 'returns nil' do
-          expect(linked_list.remove(100)).to eq(nil)
+        it 'returns value 100 node' do
+          expect(linked_list.remove(100)).to eq(append100)
         end
 
         it 'does not send #find_with_previous message to linked_list' do
@@ -1074,20 +1074,85 @@ RSpec.describe LinkedList do
         end
       end
 
-      context 'when the value to remove is not the head node' do
+      context 'when the value to remove is 400' do
         let(:append100) { linked_list.append(100) }
-        let(:previous_node) { double('previous_node') }
-        let(:current_node) { nil }
 
         before do
-          # allow(previous_node).to receive(:next_node=)
-          allow(linked_list).to receive(:find_with_previous)
-            .and_return([previous_node, current_node])
           append100
+        end
+
+        it 'sends #value message to @head exactly 1 time' do
+          expect(linked_list.head).to receive(:value).and_call_original.exactly(1).time
+          linked_list.remove(100)
         end
 
         it 'returns nil' do
           expect(linked_list.remove(400)).to eq(nil)
+        end
+      end
+    end
+
+    context 'when the values 100, 200 are in the list' do
+      context 'when the value to remove is value 100 node (head)' do
+        let(:append100) { linked_list.append(100) }
+        let(:append200) { linked_list.append(200) }
+        # let(:previous_node) { double('previous_node') }
+        # let(:current_node) { double('current_node') }
+
+        before do
+          append100
+          append200
+          # allow(linked_list).to receive(:find_with_previous)
+          #   .and_return([previous_node, current_node])
+        end
+
+        it 'sends #value message to @head exactly 1 time' do
+          expect(linked_list.head).to receive(:value).and_call_original.exactly(1).time
+          linked_list.remove(100)
+        end
+
+        it 'sends #next_node message to value 100 node exactly 1 time' do
+          expect(append100).to receive(:next_node).exactly(1).time
+          linked_list.remove(100)
+        end
+
+        it 'changes the the value of @head to value 200 node' do
+          expect { linked_list.remove(100) }.to change { linked_list.head }
+            .from(append100).to(append200)
+        end
+
+        it 'returns value 100 node' do
+          expect(linked_list.remove(100)).to eq(append100)
+        end
+
+        it 'does not send #find_with_previous message to linked_list' do
+          expect(linked_list).not_to receive(:find_with_previous)
+          linked_list.remove(100)
+        end
+      end
+
+      context 'when the value to remove is 200' do
+        let(:append100) { linked_list.append(100) }
+        let(:append200) { linked_list.append(200) }
+        let(:previous_node) { double('previous_node') }
+        let(:current_node) { double('current_node') }
+
+        before do
+          append100
+          append200
+          allow(linked_list).to receive(:find_with_previous)
+            .and_return([previous_node, current_node])
+          allow(current_node).to receive(:next_node)
+          allow(previous_node).to receive(:next_node=)
+        end
+
+        it 'sends #value message to @head exactly 1 time' do
+          expect(linked_list.head).to receive(:value).and_call_original.exactly(1).time
+          linked_list.remove(100)
+        end
+        
+        it 'returns [previous_node, current_node]' do
+          expect(linked_list.remove(200)).to eq([previous_node, current_node])
         end
       end
     end
