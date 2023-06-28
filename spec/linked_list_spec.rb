@@ -1042,13 +1042,13 @@ RSpec.describe LinkedList do
     end
 
     context 'when the value 100 is in the list' do
+      let(:append100) { linked_list.append(100) }
+
+      before do
+        append100
+      end
+
       context 'when the value to remove is value 100 node (head)' do
-        let(:append100) { linked_list.append(100) }
-
-        before do
-          append100
-        end
-
         it 'sends #value message to @head exactly 1 time' do
           expect(linked_list.head).to receive(:value).and_call_original.exactly(1).time
           linked_list.remove(100)
@@ -1075,12 +1075,6 @@ RSpec.describe LinkedList do
       end
 
       context 'when the value to remove is 400' do
-        let(:append100) { linked_list.append(100) }
-
-        before do
-          append100
-        end
-
         it 'sends #value message to @head exactly 1 time' do
           expect(linked_list.head).to receive(:value).and_call_original.exactly(1).time
           linked_list.remove(100)
@@ -1159,21 +1153,6 @@ RSpec.describe LinkedList do
           linked_list.remove(400)
         end
         
-        # it 'sends #next_node message to value 200 node exactly 1 time' do
-        #   expect(append200).to receive(:next_node).exactly(1).time
-        #   linked_list.remove(200)
-        # end
-
-        # it 'sends #next_node= message to value 100 node exactly 1 time' do
-        #   expect(append100).to receive(:next_node=).exactly(1).time
-        #   linked_list.remove(200)
-        # end
-
-        # it "changes value 100 node's next_node from value 200 node to nil" do
-        #   linked_list.remove(200)
-        #   expect(append100.next_node).to eq(nil)
-        # end
-
         it 'returns nil' do
           expect(linked_list.remove(400)).to eq(nil)
         end
