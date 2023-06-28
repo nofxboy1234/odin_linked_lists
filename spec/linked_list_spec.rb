@@ -366,47 +366,37 @@ RSpec.describe LinkedList do
     end
 
     context 'when linked_list is not empty' do
-      it 'decreases the size of linked_list by 1' do
-        linked_list.append(100)
-        linked_list.append(200)
-        linked_list.append(300)
+      let(:append100) { linked_list.append(100) }
+      let(:append200) { linked_list.append(200) }
+      let(:append300) { linked_list.append(300) }
 
+      before do
+        append100
+        append200
+        append300
+      end
+
+      it 'decreases the size of linked_list by 1' do
         expect { linked_list.pop }.to change { linked_list.size }.by(-1)
       end
 
       it 'sends #value message to @tail exactly 2 times - in #pop and remove#' do
-        linked_list.append(100)
-        linked_list.append(200)
-        linked_list.append(300)
-
         expect(linked_list.tail).to receive(:value).exactly(2).times
         linked_list.pop
       end
 
       it 'sets next_node of the new tail node to nil (removes ref to old tail)' do
-        linked_list.append(100)
-        new_tail = linked_list.append(200)
-        linked_list.append(300)
-
         linked_list.pop
-        expect(new_tail.next_node).to be_nil
+        expect(append200.next_node).to be_nil
       end
 
       it 'sets @tail to the new tail node' do
-        linked_list.append(100)
-        new_tail = linked_list.append(200)
-        linked_list.append(300)
-
         linked_list.pop
-        expect(linked_list.tail).to be(new_tail)
+        expect(linked_list.tail).to be(append200)
       end
 
       it 'returns the old tail node that was removed' do
-        linked_list.append(100)
-        linked_list.append(200)
-        old_tail = linked_list.append(300)
-
-        expect(linked_list.pop).to be(old_tail)
+        expect(linked_list.pop).to be(append300)
       end
     end
   end
