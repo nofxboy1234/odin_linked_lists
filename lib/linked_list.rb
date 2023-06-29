@@ -187,12 +187,10 @@ class LinkedList
   end
 
   def nodes_string(values)
-    last_index = values.size - 1
-
     values.each_with_index.inject('') do |memo, operand|
       op = operand[0]
       index = operand[1]
-      index_is_last = index == last_index
+      index_is_last = op == values.last
 
       str = if index_is_last
               memo + op.to_s
