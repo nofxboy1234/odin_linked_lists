@@ -959,8 +959,8 @@ RSpec.describe LinkedList do
   describe '#to_s', to_s: true do
     context 'when the list is empty' do
       it 'returns an empty string' do
-        expect(linked_list.to_s).to eq('')
-        expect { puts linked_list }.to output("\n").to_stdout
+        expect(linked_list.to_s).to eq('(  ) -> nil')
+        expect { puts linked_list }.to output("(  ) -> nil\n").to_stdout
       end
     end
 

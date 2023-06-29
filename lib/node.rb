@@ -23,6 +23,14 @@ class Node
   def next_node=(node)
     @next_node = node
   end
+
+  def to_s
+    "( #{value} )"
+  end
+
+  def inspect
+    to_s
+  end
 end
 # rubocop:enable Style/TrivialAccessors
 # rubocop:enable Lint/RedundantCopDisableDirective

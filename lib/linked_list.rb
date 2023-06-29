@@ -90,7 +90,7 @@ class LinkedList
   end
 
   def to_s
-    return '' if empty?
+    return '(  ) -> nil' if empty?
 
     values = []
     current_node = head
@@ -101,6 +101,10 @@ class LinkedList
 
     values.push('nil')
     nodes_string(values)
+  end
+
+  def inspect
+    to_s
   end
 
   def remove_at(index)
