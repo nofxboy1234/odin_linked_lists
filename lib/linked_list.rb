@@ -103,10 +103,6 @@ class LinkedList
     nodes_string(values)
   end
 
-  def inspect
-    to_s
-  end
-
   def remove_at(index)
     node = at(index)
     remove(node.value) if node

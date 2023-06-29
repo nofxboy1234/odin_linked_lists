@@ -27,10 +27,6 @@ class Node
   def to_s
     "( #{value} )"
   end
-
-  def inspect
-    to_s
-  end
 end
 # rubocop:enable Style/TrivialAccessors
 # rubocop:enable Lint/RedundantCopDisableDirective
