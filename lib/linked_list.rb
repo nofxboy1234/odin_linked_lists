@@ -142,13 +142,15 @@ class LinkedList
       while current_node
         if count == index - 1
           new_node = create_node(value, current_node.next_node)
-          return current_node.next_node = new_node
+          current_node.next_node = new_node
+          break
         end
 
         current_node = current_node.next_node
         count += 1
       end
     end
+    self
   end
 
   private

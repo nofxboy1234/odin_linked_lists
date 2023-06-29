@@ -1221,21 +1221,27 @@ RSpec.describe LinkedList do
     describe 'inserts a new node with the provided value at the given index' do
       context 'when linked list is empty' do
         let(:insert_at_99) { linked_list.insert_at(100, 99) }
+        let(:new_node) { double('new_node') }
+
+        before do
+          allow(linked_list).to receive(:create_node).and_return(new_node)
+        end
 
         it 'increases size of linked list by 1' do
           expect { insert_at_99 }
             .to change { linked_list.size }.from(0).to(1)
         end
 
-        it 'has inserted node at index 0' do
+        it 'has inserted new node at index 0' do
           insert_at_99
-          expect(linked_list.at(0)).to be(insert_at_99)
+          expect(insert_at_99.at(0)).to be(new_node)
         end
       end
 
       context 'when linked list has values 100, 200' do
         let(:append100) { linked_list.append(100) }
         let(:append200) { linked_list.append(200) }
+        let(:new_node) { double('new_node') }
         let(:insert_at_99) { linked_list.insert_at(700, 99) }
         let(:insert_at_0) { linked_list.insert_at(700, 0) }
         let(:insert_at_1) { linked_list.insert_at(700, 1) }
@@ -1243,6 +1249,7 @@ RSpec.describe LinkedList do
         before do
           append100
           append200
+          allow(linked_list).to receive(:create_node).and_return(new_node)
         end
 
         context 'when index >= linked list size' do
@@ -1251,9 +1258,9 @@ RSpec.describe LinkedList do
               .to change { linked_list.size }.from(2).to(3)
           end
 
-          it 'has inserted node as the tail' do
+          it 'has inserted new node at tail' do
             insert_at_99
-            expect(linked_list.tail).to be(insert_at_99)
+            expect(insert_at_99.tail).to be(new_node)
           end
         end
 
@@ -1263,9 +1270,9 @@ RSpec.describe LinkedList do
               .to change { linked_list.size }.from(2).to(3)
           end
 
-          it 'has inserted node at index 0' do
+          it 'has inserted new node at index 0' do
             insert_at_0
-            expect(linked_list.at(0)).to be(insert_at_0)
+            expect(insert_at_0.at(0)).to be(new_node)
           end
         end
 
@@ -1275,15 +1282,10 @@ RSpec.describe LinkedList do
               .to change { linked_list.size }.from(2).to(3)
           end
 
-          it 'has inserted node at index 1' do
+          it 'has inserted new node at index 1' do
             insert_at_1
-            expect(linked_list.at(1)).to be(insert_at_1)
+            expect(insert_at_1.at(1)).to be(new_node)
           end
-          # increment size
-          # loop through the linked list until given index - 1 is reached
-          # create the new node with given value
-          # set next_node of the new node to current_node.next_node
-          # set next_node of current_node to the new node
         end
       end
     end
