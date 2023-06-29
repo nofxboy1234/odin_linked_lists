@@ -138,9 +138,11 @@ class LinkedList
 
   def insert_at(value, index)
     if empty?
-      append(create_node(value))
+      append(value)
+      # append(create_node(value))
     elsif index >= size
-      append(create_node(value))
+      append(value)
+      # append(create_node(value))
     elsif index.zero?
       prepend(value)
     else
