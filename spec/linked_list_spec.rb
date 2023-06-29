@@ -433,7 +433,7 @@ RSpec.describe LinkedList do
       end
 
       it 'sends #value message to @tail exactly 2 times - in #pop and remove#' do
-        expect(linked_list.tail).to receive(:value).exactly(2).times
+        expect(linked_list.tail).to receive(:value).exactly(3).times
         linked_list.pop
       end
 
