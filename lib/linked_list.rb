@@ -131,7 +131,6 @@ class LinkedList
 
     decrement_size
     @tail = previous_node if tail.value == value
-    # self.head = tail if [1].include?(size)
 
     previous_node.next_node = current_node.next_node
     [previous_node, current_node]
