@@ -117,9 +117,12 @@ class LinkedList
 
     # deleting the head node
     if head.value == value
-      decrement_size
+
       old_head = head
       self.head = head.next_node
+      decrement_size
+      @tail = head if [0, 1].include?(size)
+
       return [old_head, old_head]
     end
 
@@ -127,6 +130,9 @@ class LinkedList
     return nil unless current_node
 
     decrement_size
+    @tail = previous_node if tail.value == value
+    # self.head = tail if [1].include?(size)
+
     previous_node.next_node = current_node.next_node
     [previous_node, current_node]
   end
