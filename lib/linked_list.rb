@@ -109,7 +109,7 @@ class LinkedList
 
   def remove_at(index)
     node = at(index)
-    remove(node.value)
+    remove(node.value) if node
   end
 
   def remove(value)
