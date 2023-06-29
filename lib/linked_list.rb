@@ -120,7 +120,7 @@ class LinkedList
       decrement_size
       old_head = head
       self.head = head.next_node
-      return old_head
+      return [old_head, old_head]
     end
 
     previous_node, current_node = find_with_previous(value)

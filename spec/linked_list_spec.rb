@@ -1106,8 +1106,8 @@ RSpec.describe LinkedList do
             .from(append100).to(nil)
         end
 
-        it 'returns value 100 node' do
-          expect(linked_list.remove(100)).to eq(append100)
+        it 'returns [value_100_node, value_100_node]' do
+          expect(linked_list.remove(100)).to eq([append100, append100])
         end
 
         it 'does not send #find_with_previous message to linked_list' do
@@ -1158,8 +1158,8 @@ RSpec.describe LinkedList do
             .from(append100).to(append200)
         end
 
-        it 'returns value 100 node' do
-          expect(linked_list.remove(100)).to eq(append100)
+        it 'returns [value_100_node, value_100_node]' do
+          expect(linked_list.remove(100)).to eq([append100, append100])
         end
 
         it 'does not send #find_with_previous message to linked_list' do
