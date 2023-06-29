@@ -25,7 +25,11 @@ class Node
   end
 
   def to_s
-    "( #{value} )"
+    "( #{@value} )"
+  end
+
+  def inspect
+    to_s
   end
 end
 # rubocop:enable Style/TrivialAccessors

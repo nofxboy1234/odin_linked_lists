@@ -93,7 +93,7 @@ class LinkedList
     return '(  ) -> nil' if empty?
 
     values = []
-    current_node = head
+    current_node = @head
     while current_node
       values.push(current_node.value || 'nil')
       current_node = current_node.next_node
@@ -101,6 +101,10 @@ class LinkedList
 
     values.push('nil')
     nodes_string(values)
+  end
+
+  def inspect
+    to_s
   end
 
   def remove_at(index)
